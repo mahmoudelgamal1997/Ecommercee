@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_product"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/favourit_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                android:padding="7dp"
+                 />
+
+            <TextView
+                android:id="@+id/favourit_name"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/favourit_image"
+                android:maxLines="1"
+                android:text="qwwwwwww"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:paddingTop="8dp"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/favourit_price"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/favourit_name"
+                android:layout_toRightOf="@+id/favourit_image"
+                android:maxLines="1"
+                android:text="e33"
+                android:textColor="#000"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/delete_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="20dp" />
+
+            <Button
+                android:id="@+id/add_to_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delete_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/add_cart_button"
+                android:padding="10dp"
+                android:text="Add to cart"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>
