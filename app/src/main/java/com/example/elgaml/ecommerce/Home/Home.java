@@ -1,9 +1,11 @@
 package com.example.elgaml.ecommerce.Home;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,15 +13,19 @@ import com.example.elgaml.ecommerce.Fragment.CartFragment;
 import com.example.elgaml.ecommerce.Fragment.DealsFragment;
 import com.example.elgaml.ecommerce.Fragment.FavouritFragment;
 import com.example.elgaml.ecommerce.Fragment.MyAccountFragment;
-import com.example.elgaml.ecommerce.Fragment.MyAccountViewModel;
 import com.example.elgaml.ecommerce.Fragment.NoConnectionFragment;
-import com.example.elgaml.ecommerce.Fragment.homeFrgament;
+import com.example.elgaml.ecommerce.Fragment.HomeFragment;
 import com.example.elgaml.ecommerce.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
 
 public class Home extends AppCompatActivity {
 
+    HomeFragment homeFragment;
+    FavouritFragment favouritFragment;
+    CartFragment cartFragment;
+    DealsFragment dealsFragment;
+    MyAccountFragment accountfrgament;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,7 @@ public class Home extends AppCompatActivity {
 
         if (isNetworkAvailable(this)) {
             //init state is home fragment
-            homeFrgament frgament = new homeFrgament();
+            HomeFragment frgament = new HomeFragment();
             changeFrgment(frgament);
         }else{
             changeFrgment(noConnectionFragment);
@@ -41,8 +47,10 @@ public class Home extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.home_icon: {
                 if (isNetworkAvailable(Home.this)){
-                homeFrgament frgament=new homeFrgament();
-                changeFrgment(frgament);
+                if (homeFragment == null){
+                    homeFragment=new HomeFragment();
+                }
+                    changeFrgment(homeFragment);
                 return true;
                 }else {
                     changeFrgment(noConnectionFragment);
@@ -50,8 +58,10 @@ public class Home extends AppCompatActivity {
             }
             case R.id.favourit_icon: {
                 if (isNetworkAvailable(Home.this)) {
-                    FavouritFragment frgament =new FavouritFragment();
-                    changeFrgment(frgament);
+                   if (favouritFragment==null) {
+                       favouritFragment = new FavouritFragment();
+                   }
+                    changeFrgment(favouritFragment);
                     return true;
                 }else {
                     changeFrgment(noConnectionFragment);
@@ -59,8 +69,10 @@ public class Home extends AppCompatActivity {
             }
             case R.id.cart_icon: {
                 if ( isNetworkAvailable(Home.this)) {
-                    CartFragment frgament = new CartFragment();
-                    changeFrgment(frgament);
+                    if (cartFragment==null){
+                        cartFragment= new CartFragment();
+                    }
+                    changeFrgment(cartFragment);
                     return true;
                 }else {
                     changeFrgment(noConnectionFragment);
@@ -69,8 +81,10 @@ public class Home extends AppCompatActivity {
 
             case R.id.deals: {
                 if ( isNetworkAvailable(Home.this)) {
-                    DealsFragment frgament = new DealsFragment();
-                    changeFrgment(frgament);
+                    if (dealsFragment==null){
+                        dealsFragment= new DealsFragment();
+                    }
+                    changeFrgment(dealsFragment);
                     return true;
                 } else {
                     changeFrgment(noConnectionFragment);
@@ -79,12 +93,13 @@ public class Home extends AppCompatActivity {
 
             case R.id.account: {
                 if (isNetworkAvailable(Home.this)) {
-                    MyAccountFragment frgament = new MyAccountFragment();
-                    changeFrgment(frgament);
+                    if (accountfrgament==null){
+                        accountfrgament= new MyAccountFragment();
+                    }
+                    changeFrgment(accountfrgament);
                     return true;
                 }else {
                     changeFrgment(noConnectionFragment);
-
                 } } }
             return true;
             }
@@ -96,5 +111,25 @@ public class Home extends AppCompatActivity {
                 .replace(R.id.main_fragment, fragment)
                 .commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this app?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+
 
 }

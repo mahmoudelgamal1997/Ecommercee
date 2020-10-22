@@ -1,6 +1,7 @@
 package com.example.elgaml.ecommerce.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,7 +38,7 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
 
-public class homeFrgament extends Fragment implements NewArrivalRecyclerAdapter.NewArrivalRecyclerAdapterListiner {
+public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.NewArrivalRecyclerAdapterListiner {
 
     RecyclerView recyclerView_new_arrival, recyclerView_best_seller, recyclerView_category, recyclerView_hotdeals;
     HomeViewModel homeViewModel;
@@ -94,7 +96,7 @@ public class homeFrgament extends Fragment implements NewArrivalRecyclerAdapter.
         recyclerView_hotdeals = (RecyclerView) view.findViewById(R.id.hot_deals_recycler);
         recyclerView_hotdeals.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival , homeFrgament.this);
+        arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival , HomeFragment.this);
         recyclerView_new_arrival.setAdapter(arrivalAdapter);
 
         bestSellerRecyclerAdapter = new BestSellerRecyclerAdapter(getContext(), mBestSeller, token, getViewLifecycleOwner(), homeViewModel);
@@ -168,4 +170,8 @@ public class homeFrgament extends Fragment implements NewArrivalRecyclerAdapter.
         toast = Toast.makeText((context), msg, Toast.LENGTH_SHORT);
         toast.show();
     }
+
+
+
+
 }

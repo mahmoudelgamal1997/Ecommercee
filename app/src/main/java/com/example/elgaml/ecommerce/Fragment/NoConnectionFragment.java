@@ -40,7 +40,7 @@ public class NoConnectionFragment extends Fragment {
             public void onClick(View v) {
                if (isNetworkAvailable(getContext())) {
                    //init state is home fragment
-                   homeFrgament frgament = new homeFrgament();
+                   HomeFragment frgament = new HomeFragment();
                    changeFrgment(frgament);
                } }});
         }

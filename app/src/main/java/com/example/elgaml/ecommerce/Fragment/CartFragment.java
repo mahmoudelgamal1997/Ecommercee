@@ -113,12 +113,11 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
                     number_Items.setText(cartResponse.getTotalItems() + " items");
                     double sum = cartResponse.getTotalPrice() + Integer.parseInt(cartResponse.getShipping());
                     total_number.setText("USD " + sum);
-
                     progressBar.setVisibility(View.INVISIBLE);
                 }else {
                     toast_emputy.setVisibility(View.VISIBLE);
                     toast_emputy.setText("No Item in Cart ");
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

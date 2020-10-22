@@ -18,38 +18,29 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CartViewModel extends ViewModel {
 
-     CartRepository cartRepository;
+    CartRepository cartRepository;
 
     public  void init(){
         if(cartRepository==null){
             cartRepository = new CartRepository();
         }
-
     }
-
-
     public LiveData<CartResponse> getCart(String api_token){
         final MutableLiveData<CartResponse> mutableLiveData = new MutableLiveData<>();
         cartRepository.getCart(api_token).subscribe(new SingleObserver<CartResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
             }
-
             @Override
             public void onSuccess(CartResponse cartResponse) {
                 mutableLiveData.setValue(cartResponse);
                 Log.e("cartResponse",cartResponse.getShipping());
             }
-
             @Override
             public void onError(Throwable e) {
                 Log.e("ERrorrrr",e.getMessage());
             }
         });
-
         return mutableLiveData;
     }
-
-
-
 }
