@@ -32,80 +32,82 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         final BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view_bar);
-        final NoConnectionFragment noConnectionFragment=new NoConnectionFragment();
+        final NoConnectionFragment noConnectionFragment = new NoConnectionFragment();
 
         if (isNetworkAvailable(this)) {
             //init state is home fragment
             HomeFragment frgament = new HomeFragment();
             changeFrgment(frgament);
-        }else{
+        } else {
             changeFrgment(noConnectionFragment);
         }
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home_icon: {
-                if (isNetworkAvailable(Home.this)){
-                if (homeFragment == null){
-                    homeFragment=new HomeFragment();
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home_icon: {
+                        if (isNetworkAvailable(Home.this)) {
+                            if (homeFragment == null) {
+                                homeFragment = new HomeFragment();
+                            }
+                            changeFrgment(homeFragment);
+                            return true;
+                        } else {
+                            changeFrgment(noConnectionFragment);
+                        }
+                    }
+                    case R.id.favourit_icon: {
+                        if (isNetworkAvailable(Home.this)) {
+                            if (favouritFragment == null) {
+                                favouritFragment = new FavouritFragment();
+                            }
+                            changeFrgment(favouritFragment);
+                            return true;
+                        } else {
+                            changeFrgment(noConnectionFragment);
+                        }
+                    }
+                    case R.id.cart_icon: {
+                        if (isNetworkAvailable(Home.this)) {
+                            if (cartFragment == null) {
+                                cartFragment = new CartFragment();
+                            }
+                            changeFrgment(cartFragment);
+                            return true;
+                        } else {
+                            changeFrgment(noConnectionFragment);
+
+                        }
+                    }
+
+                    case R.id.deals: {
+                        if (isNetworkAvailable(Home.this)) {
+                            if (dealsFragment == null) {
+                                dealsFragment = new DealsFragment();
+                            }
+                            changeFrgment(dealsFragment);
+                            return true;
+                        } else {
+                            changeFrgment(noConnectionFragment);
+
+                        }
+                    }
+
+                    case R.id.account: {
+                        if (isNetworkAvailable(Home.this)) {
+                            if (accountfrgament == null) {
+                                accountfrgament = new MyAccountFragment();
+                            }
+                            changeFrgment(accountfrgament);
+                            return true;
+                        } else {
+                            changeFrgment(noConnectionFragment);
+                        }
+                    }
                 }
-                    changeFrgment(homeFragment);
                 return true;
-                }else {
-                    changeFrgment(noConnectionFragment);
-                }
-            }
-            case R.id.favourit_icon: {
-                if (isNetworkAvailable(Home.this)) {
-                   if (favouritFragment==null) {
-                       favouritFragment = new FavouritFragment();
-                   }
-                    changeFrgment(favouritFragment);
-                    return true;
-                }else {
-                    changeFrgment(noConnectionFragment);
-                }
-            }
-            case R.id.cart_icon: {
-                if ( isNetworkAvailable(Home.this)) {
-                    if (cartFragment==null){
-                        cartFragment= new CartFragment();
-                    }
-                    changeFrgment(cartFragment);
-                    return true;
-                }else {
-                    changeFrgment(noConnectionFragment);
-
-                }}
-
-            case R.id.deals: {
-                if ( isNetworkAvailable(Home.this)) {
-                    if (dealsFragment==null){
-                        dealsFragment= new DealsFragment();
-                    }
-                    changeFrgment(dealsFragment);
-                    return true;
-                } else {
-                    changeFrgment(noConnectionFragment);
-
-                }}
-
-            case R.id.account: {
-                if (isNetworkAvailable(Home.this)) {
-                    if (accountfrgament==null){
-                        accountfrgament= new MyAccountFragment();
-                    }
-                    changeFrgment(accountfrgament);
-                    return true;
-                }else {
-                    changeFrgment(noConnectionFragment);
-                } } }
-            return true;
             }
         });
-
-
     }
 
 
