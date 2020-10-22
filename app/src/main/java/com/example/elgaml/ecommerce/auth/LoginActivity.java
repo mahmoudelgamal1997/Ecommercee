@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity  {
     String USER_ID="UserId";
     String USER_NAME= "UserName";
     String USER_EMAIL="UserEmail";
+    String USER_IMG="UserImage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity  {
                                         editor.putString(USER_ID,user.getApiToken());
                                         editor.putString(USER_NAME,user.getName());
                                         editor.putString(USER_EMAIL,user.getEmail());
+                                        editor.putString(USER_IMG,user.getImage());
                                         editor.apply();
 
                                     loginViewModel.goToHome(getCurrentFocus());

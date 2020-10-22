@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view_bar);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view_bar);
         final NoConnectionFragment noConnectionFragment=new NoConnectionFragment();
 
         if (isNetworkAvailable(this)) {
@@ -128,8 +128,4 @@ public class Home extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
-    }
-
-
-
-}
+    }}

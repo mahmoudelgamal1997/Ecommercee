@@ -35,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity  {
     String USER_ID="UserId";
     String USER_NAME= "UserName";
     String USER_EMAIL="UserEmail";
+    String USER_IMG="UserImage";
+
     private static final String MY_PREFS_NAME ="UserAuth" ;
     private ProgressBar progressBar;
     @Override
@@ -116,27 +118,26 @@ public class SignUpActivity extends AppCompatActivity  {
                         }
                     }
 
-                    if (!flag) {
-                        signUpViewModel.signUp(name.trim(), email, phone, password)
-                                .observe(SignUpActivity.this, new Observer<User>() {
-                                    @Override
-                                    public void onChanged(User user) {
-                                        if (user!=null) {
-                                            Log.e("SignUP", user.getId().toString());
-                                            progressBar.setVisibility(View.VISIBLE);
-                                            // Storing boolean
-                                            signUpViewModel.editorSaveUser(MY_PREFS_NAME, SignUpActivity.this, "isExist", true);
-                                            signUpViewModel.editorSaveUserID(MY_PREFS_NAME , SignUpActivity.this,USER_ID,user.getApiToken());
-                                            signUpViewModel.editorSaveUserName(MY_PREFS_NAME,SignUpActivity.this,USER_NAME,user.getName());
-                                            signUpViewModel.editorSaveUserEmail(MY_PREFS_NAME,SignUpActivity.this,USER_EMAIL,user.getEmail());
-
-                                            Log.e("SignupToken",user.getApiToken());
-                                            signUpViewModel.goToHome(getCurrentFocus());
-                                            finish();
-                                            progressBar.setVisibility(View.INVISIBLE);
-                                        }
-                                    }
-                                });
+        if (!flag) {
+            signUpViewModel.signUp(name.trim(), email, phone, password)
+                    .observe(SignUpActivity.this, new Observer<User>() {
+                        @Override
+                        public void onChanged(User user) {
+                            if (user!=null) {
+                                Log.e("SignUP", user.getId().toString());
+                                progressBar.setVisibility(View.VISIBLE);
+                                // Storing boolean
+                                signUpViewModel.editorSaveUser(MY_PREFS_NAME, SignUpActivity.this, "isExist", true);
+                                signUpViewModel.editorSaveUserID(MY_PREFS_NAME , SignUpActivity.this,USER_ID,user.getApiToken());
+                                signUpViewModel.editorSaveUserName(MY_PREFS_NAME,SignUpActivity.this,USER_NAME,user.getName());
+                                signUpViewModel.editorSaveUserEmail(MY_PREFS_NAME,SignUpActivity.this,USER_EMAIL,user.getEmail());
+                                signUpViewModel.editorSaveUserImage(MY_PREFS_NAME,SignUpActivity.this,USER_IMG,user.getImage());
+                                signUpViewModel.goToHome(getCurrentFocus());
+                                finish();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    });
 
                         //to handle error form server
                         signUpViewModel.signUpErrorModel();

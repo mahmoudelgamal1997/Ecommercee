@@ -84,6 +84,15 @@ public class SignUpViewModel extends ViewModel {
 
     }
 
+    public SharedPreferences.Editor editorSaveUserImage(String MY_PREFS_NAME, Context context, String key, String value){
+
+        SharedPreferences.Editor editor=getsSharedPreferences(MY_PREFS_NAME, context).edit();
+        editor.putString(key, value); // Storing boolean
+        editor.apply();
+        return editor;
+
+    }
+
     public void goToHome(View view){
         Intent intent = new Intent(view.getContext(), Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

@@ -27,6 +27,9 @@ public class NewPassword extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     String USER_ID="UserId";
+    String USER_NAME= "UserName";
+    String USER_EMAIL="UserEmail";
+    String USER_IMG="UserImage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,9 @@ public class NewPassword extends AppCompatActivity {
                              newPasswordViewModel.goToHome(getCurrentFocus());
                              editor.putBoolean("isExist", true);// Storing boolean
                              editor.putString(USER_ID,changePasswordModel.getUser().getApiToken());
+                             editor.putString(USER_NAME,changePasswordModel.getUser().getName());
+                             editor.putString(USER_EMAIL,changePasswordModel.getUser().getEmail());
+                             editor.putString(USER_IMG,changePasswordModel.getUser().getImage());
                              editor.apply();
                              finish();
                             }

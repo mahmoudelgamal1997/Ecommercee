@@ -48,7 +48,6 @@ public class MyAccountFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     // TODO: Rename and change types and number of parameters
     public static MyAccountFragment newInstance(String param1, String param2) {
         MyAccountFragment fragment = new MyAccountFragment();
@@ -59,7 +58,7 @@ public class MyAccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.profile, container, false);
+        return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
     @Override
@@ -73,7 +72,6 @@ public class MyAccountFragment extends Fragment {
         userEmail= view.findViewById(R.id.userEmail);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = prefs.edit();
-
         token = prefs.getString(USER_ID, "");
         name=prefs.getString(USER_NAME,"");
         email=prefs.getString(USER_EMAIL,"");
@@ -81,14 +79,13 @@ public class MyAccountFragment extends Fragment {
         Toolbar toolbar=(Toolbar)view.findViewById(R.id.toolbar_account);
         toolbar.setTitle("");
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
         TextView logout=(TextView)view.findViewById(R.id.logout);
-
-
 
         BottomNavigationView mBottomView=getActivity().findViewById(R.id.nav_view_bar);
         init(view);
 
+        userName.setText(name);
+        userEmail.setText(email);
         //loading data
         viewModel.getProfile(token).observe(getViewLifecycleOwner(), new Observer<UserResponse>() {
             @Override
@@ -122,11 +119,9 @@ public class MyAccountFragment extends Fragment {
         section_favourit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FavouritFragment favouritFragment= new FavouritFragment();
                 changeFrgment(favouritFragment);
                 mBottomView.setSelectedItemId(R.id.favourit_icon);
-
             }
         });
 
@@ -136,7 +131,6 @@ public class MyAccountFragment extends Fragment {
                 shareApp();
             }
         });
-
     }
 
      void loadImage(String url, ImageView img) {
@@ -144,10 +138,10 @@ public class MyAccountFragment extends Fragment {
     }
      void init(View view){
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/fontawesome.ttf");
-         icon_order=(TextView)view.findViewById(R.id.icon_order);
-         icon_address=(TextView)view.findViewById(R.id.icon_address);
-         icon_favourit=(TextView)view.findViewById(R.id.icon_favourit);
-         icon_cart  =(TextView)view.findViewById(R.id.icon_cart);
+        icon_order=(TextView)view.findViewById(R.id.icon_order);
+        icon_address=(TextView)view.findViewById(R.id.icon_address);
+        icon_favourit=(TextView)view.findViewById(R.id.icon_favourit);
+        icon_cart  =(TextView)view.findViewById(R.id.icon_cart);
 
         icon_order.setTypeface(font);
         icon_address.setTypeface(font);
@@ -159,53 +153,53 @@ public class MyAccountFragment extends Fragment {
         icon_favourit.setText("\uf004");
         icon_cart.setText("\uf07a");
 
-         title_order=(TextView)view.findViewById(R.id.title_order);
-         title_address=(TextView)view.findViewById(R.id.title_address);
-         title_favourit=(TextView)view.findViewById(R.id.title_favourit);
-         title_cart=(TextView)view.findViewById(R.id.title_cart);
+        title_order=(TextView)view.findViewById(R.id.title_order);
+        title_address=(TextView)view.findViewById(R.id.title_address);
+        title_favourit=(TextView)view.findViewById(R.id.title_favourit);
+        title_cart=(TextView)view.findViewById(R.id.title_cart);
 
-         next_order = (TextView)view.findViewById(R.id.next_icon_order);
-         next_favourit=(TextView)view.findViewById(R.id.next_icon_favourit);
-         next_cart=(TextView)view.findViewById(R.id.next_icon_cart);
-         next_address=(TextView)view.findViewById(R.id.next_icon_address);
-         next_language=(TextView)view.findViewById(R.id.next_icon_language);
-         next_changePass=(TextView)view.findViewById(R.id.next_icon_change);
-         next_share=(TextView)view.findViewById(R.id.next_icon_share);
-         next_about=(TextView)view.findViewById(R.id.next_icon_about);
+        next_order = (TextView)view.findViewById(R.id.next_icon_order);
+        next_favourit=(TextView)view.findViewById(R.id.next_icon_favourit);
+        next_cart=(TextView)view.findViewById(R.id.next_icon_cart);
+        next_address=(TextView)view.findViewById(R.id.next_icon_address);
+        next_language=(TextView)view.findViewById(R.id.next_icon_language);
+        next_changePass=(TextView)view.findViewById(R.id.next_icon_change);
+        next_share=(TextView)view.findViewById(R.id.next_icon_share);
+        next_about=(TextView)view.findViewById(R.id.next_icon_about);
 
-         section1=(LinearLayout)view.findViewById(R.id.sectionFirst);
-         section3=(LinearLayout)view.findViewById(R.id.section3);
-         section_favourit=(LinearLayout)view.findViewById(R.id.section4);
-         section_cart=(LinearLayout)view.findViewById(R.id.section5);
-         section6=(LinearLayout)view.findViewById(R.id.section6);
-         section7=(LinearLayout)view.findViewById(R.id.section7);
-         section8=(LinearLayout)view.findViewById(R.id.section8);
-         section_share =(LinearLayout)view.findViewById(R.id.section9);
-         section10=(LinearLayout)view.findViewById(R.id.section10);
+        section1=(LinearLayout)view.findViewById(R.id.sectionFirst);
+        section3=(LinearLayout)view.findViewById(R.id.section3);
+        section_favourit=(LinearLayout)view.findViewById(R.id.section4);
+        section_cart=(LinearLayout)view.findViewById(R.id.section5);
+        section6=(LinearLayout)view.findViewById(R.id.section6);
+        section7=(LinearLayout)view.findViewById(R.id.section7);
+        section8=(LinearLayout)view.findViewById(R.id.section8);
+        section_share =(LinearLayout)view.findViewById(R.id.section9);
+        section10=(LinearLayout)view.findViewById(R.id.section10);
 
-         next_order.setTypeface(font);
-         next_order.setText("\uf054");
+        next_order.setTypeface(font);
+        next_order.setText("\uf054");
 
-         next_favourit.setTypeface(font);
-         next_favourit.setText("\uf054");
+        next_favourit.setTypeface(font);
+        next_favourit.setText("\uf054");
 
-         next_cart.setTypeface(font);
-         next_cart.setText("\uf054");
+        next_cart.setTypeface(font);
+        next_cart.setText("\uf054");
 
-         next_address.setTypeface(font);
-         next_address.setText("\uf054");
+        next_address.setTypeface(font);
+        next_address.setText("\uf054");
 
-         next_language.setTypeface(font);
-         next_language.setText("\uf054");
+        next_language.setTypeface(font);
+        next_language.setText("\uf054");
 
-         next_changePass.setTypeface(font);
-         next_changePass.setText("\uf054");
+        next_changePass.setTypeface(font);
+        next_changePass.setText("\uf054");
 
-         next_share.setTypeface(font);
-         next_share.setText("\uf054");
+        next_share.setTypeface(font);
+        next_share.setText("\uf054");
 
-         next_about.setTypeface(font);
-         next_about.setText("\uf054");
+        next_about.setTypeface(font);
+        next_about.setText("\uf054");
 
      }
      void changeFrgment(Fragment fragment){
@@ -227,4 +221,5 @@ public class MyAccountFragment extends Fragment {
             //e.toString();
         }
     }
+
 }
