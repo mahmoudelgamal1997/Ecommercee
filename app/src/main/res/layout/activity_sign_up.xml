@@ -11,17 +11,15 @@
         android:id="@+id/toolbar_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/arrow_back"
         app:layout_constraintTop_toTopOf="parent">
-
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Skip"
            android:textStyle="bold"
+           android:layout_gravity="start"
            android:textSize="20dp"
-
            />
-
     </androidx.appcompat.widget.Toolbar>
 
     <TextView

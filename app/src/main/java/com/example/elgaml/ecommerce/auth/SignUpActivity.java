@@ -36,9 +36,9 @@ public class SignUpActivity extends AppCompatActivity  {
     String USER_NAME= "UserName";
     String USER_EMAIL="UserEmail";
     String USER_IMG="UserImage";
-
     private static final String MY_PREFS_NAME ="UserAuth" ;
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +46,12 @@ public class SignUpActivity extends AppCompatActivity  {
 
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_sign_up);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
         init();
 
 
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow_back));
+    //    toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow_back));
+        toolbar.setTitle("");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +59,8 @@ public class SignUpActivity extends AppCompatActivity  {
                 finish();
             }
         });
+
+
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +105,6 @@ public class SignUpActivity extends AppCompatActivity  {
                         email_toast.setText("Email is invalid");
                         email_toast.setVisibility(View.VISIBLE);
                         flag=true;
-
                     }
 
                     if (!isValidPassword(password) || password.length() <= 6  || TextUtils.isEmpty(password)) {
