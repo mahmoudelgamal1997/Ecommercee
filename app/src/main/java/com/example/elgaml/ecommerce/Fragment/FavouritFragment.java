@@ -123,7 +123,7 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
 
         if ( isNetworkAvailable(getContext())) {
             //default
-            String quatatiy = "0";
+            String quatatiy = "1";
             String size = "1";
             String color = "1";
             Datum model = mfavourit.get(postion);

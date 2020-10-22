@@ -14,12 +14,14 @@ import com.example.elgaml.ecommerce.model.SignUpModel;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIinterface {
@@ -31,8 +33,6 @@ public interface APIinterface {
     @POST("v1/user/auth/signin")
     Call<SignInModel> signin(@Field("name") String name ,
                              @Field("password" ) String password);
-
-
 
 
     @FormUrlEncoded
@@ -142,6 +142,19 @@ public interface APIinterface {
     })
     @GET("v1/user/auth/get-profile")
     Single<UserResponse> getProfile(@Query("api_token")String api_token);
+
+
+
+    @Headers({"Accept: application/json", "Content-Type: application/x-www-form-urlencoded"})
+    @PATCH("v1/user/app/cart/update-cart")
+    Single<CartResponse> updateCart(@Query("api_token") String api_token,
+                                    @Query("quantity") int quantity,
+                                    @Query("cart_id") int cart_id);
+
+
+    @Headers({"Accept: application/json", "Content-Type: application/x-www-form-urlencoded"})
+    @DELETE("v1/user/app/cart/delete/{cart_id}")
+    Single<CartResponse> deleteCart(@Path("cart_id") int cart_id, @Query("api_token") String api_token );
 
 
 }

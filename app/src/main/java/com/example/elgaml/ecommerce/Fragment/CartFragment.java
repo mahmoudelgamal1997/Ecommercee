@@ -41,14 +41,16 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
     SharedPreferences prefs;
     private static final String MY_PREFS_NAME ="UserAuth" ;
     String USER_ID="UserId";
-    private List<Cart> mList,mSeperateList;
+    private List<Cart> mList,mSeperateList,arraylist;
     private CartRecyclerAdapter cartRecyclerAdapter;
     private BottomNavigationView navBar;
     TextView price_number , shipping_number , total_number,number_Items,toast_emputy,subtotalWord ,total_word,shipping_word ;
     View view_cart;
     Button checkout ;
     Toast toast ;
+    String  token;
     ProgressBar progressBar;
+    Observer<CartResponse> observer;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -70,17 +72,7 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         cart_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         cart_recycler.setHasFixedSize(true);
 
-        price_number=(TextView)view.findViewById(R.id.price_number);
-        shipping_number=(TextView)view.findViewById(R.id.shipping_number);
-        total_number=(TextView)view.findViewById(R.id.total_number);
-        number_Items=(TextView)view.findViewById(R.id.numberOfItems);
-        subtotalWord=(TextView)view.findViewById(R.id.subtotal);
-        total_word=(TextView)view.findViewById(R.id.total_word);
-        view_cart=(View)view.findViewById(R.id.view_cart);
-        shipping_word=view.findViewById(R.id.shipping_word);
-        toast_emputy=(TextView)view.findViewById(R.id.toast_emputy);
-        progressBar=view.findViewById(R.id.progress_cart);
-        checkout=(Button)view.findViewById(R.id.checkout_but);
+        init(view);
 
         mList= new ArrayList<>();
         mSeperateList= new ArrayList<>();
@@ -92,27 +84,22 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         cartViewModel.init();
 
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        final String  token = prefs.getString(USER_ID, "");
+           token = prefs.getString(USER_ID, "");
 
         hideAllView();
         progressBar.setVisibility(View.VISIBLE);
 
-        cartViewModel.getCart(token).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+         observer=new Observer<CartResponse>() {
             @Override
             public void onChanged(CartResponse cartResponse) {
-
                 if (cartResponse.getCarts().size() !=0 ) {
+                    mSeperateList=mList;
                     toast_emputy.setVisibility(View.GONE);
                     showAllView();
                     mList = cartResponse.getCarts();
                     cartRecyclerAdapter.setList(mList);
                     cartRecyclerAdapter.notifyDataSetChanged();
-
-                    shipping_number.setText("USD " + cartResponse.getShipping());
-                    price_number.setText("USD " + cartResponse.getTotalPrice());
-                    number_Items.setText(cartResponse.getTotalItems() + " items");
-                    double sum = cartResponse.getTotalPrice() + Integer.parseInt(cartResponse.getShipping());
-                    total_number.setText("USD " + sum);
+                    bindUI(cartResponse);
                     progressBar.setVisibility(View.INVISIBLE);
                 }else {
                     toast_emputy.setVisibility(View.VISIBLE);
@@ -120,16 +107,59 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
-        });
+        };
+        cartViewModel.getCart(token).observe(getViewLifecycleOwner(),observer);
     }
 
     @Override
     public void onClickDelete(int postion) {
-        mSeperateList=mList;
-        mSeperateList.remove(postion);
-        cartRecyclerAdapter.setList(mSeperateList);
-        cartRecyclerAdapter.notifyDataSetChanged();
-        showToast("removed Successfully",getContext(),toast);
+        cartViewModel.deleteCart(mList.get(postion).getId(),token).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+            @Override
+            public void onChanged(CartResponse cartResponse) {
+
+                if (mSeperateList.size()==1){
+                  hideAllView();
+                    toast_emputy.setVisibility(View.VISIBLE);
+                    toast_emputy.setText("No Item in Cart ");
+                }
+                mSeperateList=mList;
+                mSeperateList.remove(postion);
+                // mList=cartResponse.getCarts();
+                cartRecyclerAdapter.setList(mSeperateList);
+                cartRecyclerAdapter.notifyItemChanged(postion);
+                showToast("removed Successfully",getContext(),toast);
+            }
+        });
+    }
+
+    @Override
+    public void onClickChangeQuantity(int postiion,String but_id) {
+        int card_id = mList.get(postiion).getId();
+        int quantity=0;
+        if (but_id.equals("plus")){
+            quantity=1;
+        }else if (but_id.equals("minus")){
+            quantity=0;
+        }
+        cartViewModel.updateCart(token,quantity,card_id).observe(getViewLifecycleOwner() ,new Observer<CartResponse>() {
+            @Override
+            public void onChanged(CartResponse cartResponse) {
+                cartViewModel.getCart(token).observe(getViewLifecycleOwner(),new Observer<CartResponse>() {
+                    @Override
+                    public void onChanged(CartResponse cartResponse) {
+                        if (cartResponse.getCarts().size() !=0 ) {
+                            mSeperateList = mList;
+
+                            //mList = cartResponse.getCarts();
+                            //cartRecyclerAdapter.setList(mList);
+                            //cartRecyclerAdapter.notifyItemChanged(postiion);
+                            bindUI(cartResponse);
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     void hideAllView(){
@@ -142,6 +172,7 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         view_cart.setVisibility(View.GONE);
         shipping_word.setVisibility(View.GONE);
         checkout.setVisibility(View.GONE);
+        cart_recycler.setVisibility(View.GONE);
     }
 
     void showAllView(){
@@ -154,5 +185,29 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         view_cart.setVisibility(View.VISIBLE);
         shipping_word.setVisibility(View.VISIBLE);
         checkout.setVisibility(View.VISIBLE);
+        cart_recycler.setVisibility(View.VISIBLE);
+    }
+
+    void bindUI(CartResponse cartResponse){
+        shipping_number.setText("USD " + cartResponse.getShipping());
+        price_number.setText("USD " + cartResponse.getTotalPrice());
+        number_Items.setText(cartResponse.getTotalItems() + " items");
+        double sum = cartResponse.getTotalPrice() + Integer.parseInt(cartResponse.getShipping());
+        total_number.setText("USD " + sum);
+    }
+
+    void init(View view){
+
+        price_number=(TextView)view.findViewById(R.id.price_number);
+        shipping_number=(TextView)view.findViewById(R.id.shipping_number);
+        total_number=(TextView)view.findViewById(R.id.total_number);
+        number_Items=(TextView)view.findViewById(R.id.numberOfItems);
+        subtotalWord=(TextView)view.findViewById(R.id.subtotal);
+        total_word=(TextView)view.findViewById(R.id.total_word);
+        view_cart=(View)view.findViewById(R.id.view_cart);
+        shipping_word=view.findViewById(R.id.shipping_word);
+        toast_emputy=(TextView)view.findViewById(R.id.toast_emputy);
+        progressBar=view.findViewById(R.id.progress_cart);
+        checkout=(Button)view.findViewById(R.id.checkout_but);
     }
 }

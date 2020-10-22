@@ -100,7 +100,7 @@
                     android:id="@+id/add"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="#000"
                     android:layout_marginStart="20dp"
                     android:paddingStart="5dp"
@@ -120,7 +120,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:textColor="#000"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 />
 
 

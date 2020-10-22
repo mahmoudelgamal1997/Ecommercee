@@ -24,6 +24,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
     CartRecyclerListner listner;
     public interface CartRecyclerListner{
         void onClickDelete(int postion);
+        //add or minus button
+        void onClickChangeQuantity(int postiion,String but_id);
     }
     //constructor
     public CartRecyclerAdapter(List<Cart> list,Context context,CartRecyclerListner listner) {
@@ -47,21 +49,16 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         final Cart model = list.get(position);
         loadImage(model.getProduct().getDefaultImage(), holder.cart_img);
 
-
         holder.item_name.setText(model.getProduct().getNameEn());
         holder.item_price.setText(model.getProduct().getPrice()+" $");
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/fontawesome.ttf");
         holder.minus_button.setTypeface(font);
         holder.plus_button.setTypeface(font);
         holder.delete_from_cart.setTypeface(font);
-
         holder.minus_button.setText("\uf056");
         holder.plus_button.setText("\uF055");
         holder.delete_from_cart.setText("\uf2ed");
-
         holder.quantity.setText(model.getQuantity()+"");
-
-
         holder.delete_from_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +71,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 int sum=model.getQuantity()+1;
                 model.setQuantity(sum);
                 holder.quantity.setText(sum+"");
+                listner.onClickChangeQuantity(position,"plus");
             }
         });
 
@@ -84,15 +82,9 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                 int sum=model.getQuantity()-1;
                 model.setQuantity(sum);
                 holder.quantity.setText(sum+"");
-            }
-
-            }
+                listner.onClickChangeQuantity(position,"minus");
+            } }
         });
-
-
-
-
-
     }
 
     @Override
