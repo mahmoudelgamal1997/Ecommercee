@@ -86,6 +86,8 @@ public class ConfirmForgotPassword extends AppCompatActivity {
                                 countDownTimer.start();
                                 countDownTimer.getFinishLiveData().setValue(false);
                                 progressBar.setVisibility(View.INVISIBLE);
+                            }else {
+                                Log.e("Sending code",forgetPasswordModel.getMessage());
                             }
                         }
                     });

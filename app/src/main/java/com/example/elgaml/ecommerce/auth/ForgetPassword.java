@@ -1,6 +1,7 @@
 package com.example.elgaml.ecommerce.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
@@ -30,11 +31,22 @@ public class ForgetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
 
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_forgot);
+        setSupportActionBar(toolbar);
         phone_editetext= (EditText)findViewById(R.id.phone_forget);
         send_reset_button=(Button)findViewById(R.id.send_reset_button);
         progressBar      =(ProgressBar)findViewById(R.id.progressbar);
         errormsg         =(TextView)findViewById(R.id.errormsg);
 
+
+        getSupportActionBar().setTitle(null);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+                finish();
+            }
+        });
 
         forgetPasswordViewModel=new ForgetPasswordViewModel();
         forgetPasswordViewModel.init();

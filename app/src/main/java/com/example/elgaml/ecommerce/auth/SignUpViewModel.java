@@ -99,5 +99,11 @@ public class SignUpViewModel extends ViewModel {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         view .getContext().startActivity(intent);
     }
+     public void goToLogin(View view){
+         Intent intent =new Intent(view.getContext(), LoginActivity.class);
+         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+         view.getContext().startActivity(intent);
+    }
+
 
 }

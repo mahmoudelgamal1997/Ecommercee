@@ -118,11 +118,14 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
 
     void onGetHome(HomeResponse homeResponse) {
         mBestSeller =  homeResponse.getBestSeller();
-        mHotDeals = homeResponse.getHotDeals();
         mNewArrival = homeResponse.getNewArrival();
         mSideMenuCategories = homeResponse.getSideMenuCategories();
         mTopCategories = homeResponse.getTopCategories();
 
+        mHotDeals = homeResponse.getHotDeals();
+            if (mHotDeals.size() == 0){
+                recyclerView_hotdeals.setVisibility(View.GONE);
+            }
         arrivalAdapter.setList(mNewArrival);
         arrivalAdapter.notifyDataSetChanged();
 

@@ -55,7 +55,7 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
             holder.love.setImageResource(R.drawable.heart_unlove);
         }
 
-        holder.love.setAnimation(makeAnimation());
+       // holder.love.setAnimation(makeAnimation());
         loadImage(model.getDefaultImage(), holder.product);
         holder.item_price.setText(String.valueOf(model.getPrice() + " $"));
         holder.item_category.setText(String.valueOf(model.getNameEn()));

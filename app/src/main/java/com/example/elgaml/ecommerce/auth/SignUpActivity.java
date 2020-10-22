@@ -49,9 +49,6 @@ public class SignUpActivity extends AppCompatActivity  {
         getSupportActionBar().setTitle(null);
         init();
 
-
-    //    toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow_back));
-        toolbar.setTitle("");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,9 +168,7 @@ public class SignUpActivity extends AppCompatActivity  {
 
                                     signUpViewModel.signuperror.setValue(null);
                                     progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
+                                } }
                         });
                     }
 
@@ -186,15 +181,11 @@ public class SignUpActivity extends AppCompatActivity  {
         signin_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(SignUpActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+               signUpViewModel.goToLogin(view);
                 finish();
             }
         });
     }
-
-
 
     void hideToast(){
         name_toast.setVisibility(View.INVISIBLE);
@@ -215,7 +206,6 @@ public class SignUpActivity extends AppCompatActivity  {
         phone_toast=(TextView)findViewById(R.id.phone_toast);
         password_toast=(TextView)findViewById(R.id.password_toast);
         progressBar = (ProgressBar)findViewById(R.id.progress_sign_up);
-
         signUpViewModel= new SignUpViewModel();
         signUpViewModel.init(SignUpRepository.getInstance());
 

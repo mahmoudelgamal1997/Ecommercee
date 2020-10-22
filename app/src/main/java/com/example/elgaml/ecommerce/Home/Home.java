@@ -104,7 +104,10 @@ public class Home extends AppCompatActivity {
             return true;
             }
         });
+
+
     }
+
 
     void changeFrgment(Fragment fragment){
         getSupportFragmentManager().beginTransaction()

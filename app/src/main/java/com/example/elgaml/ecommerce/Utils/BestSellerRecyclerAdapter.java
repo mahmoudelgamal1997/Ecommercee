@@ -66,13 +66,12 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
             holder.love.setImageResource(R.drawable.heart_unlove);
         }
 
-        holder.love.setAnimation(makeAnimation());
+       // holder.love.setAnimation(makeAnimation());
 
         loadImage(model.getDefaultImage(),holder.product);
         /*
         if (model.getTodayOffer()!=null){
             holder.discount_text.setText(((String) model.getTodayOffer()));
-
         }
 
          */

@@ -44,7 +44,6 @@ public class ConfirmPasswordViewModel  {
 
                     }
 
-
                     @Override
                     public void onSuccess(ForgetPasswordModel forgetPasswordModel) {
                         mutableLiveDataForget.setValue(forgetPasswordModel);
