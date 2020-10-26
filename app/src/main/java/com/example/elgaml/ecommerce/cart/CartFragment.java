@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.cart;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.elgaml.ecommerce.R;
+import com.example.elgaml.ecommerce.cart.CartViewModel;
 import com.example.elgaml.ecommerce.utils.CartRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;

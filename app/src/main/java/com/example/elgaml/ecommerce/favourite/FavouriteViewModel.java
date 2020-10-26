@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.favourite;
 
 import android.util.Log;
 
@@ -13,7 +13,7 @@ import com.example.elgaml.ecommerce.repostiory.FavouritRepository;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class FavouritViewModel extends ViewModel {
+public class FavouriteViewModel extends ViewModel {
 
     private FavouritRepository favouritRepository;
 

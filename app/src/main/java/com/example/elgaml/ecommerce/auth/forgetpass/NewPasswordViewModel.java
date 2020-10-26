@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.forgetpass;
 
 import android.content.Intent;
 import android.view.View;

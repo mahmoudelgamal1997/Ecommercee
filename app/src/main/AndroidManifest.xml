@@ -15,10 +15,10 @@
 
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".auth.NewPassword"></activity>
-        <activity android:name=".auth.ConfirmForgotPassword" />
-        <activity android:name=".auth.ForgetPassword" />
-        <activity android:name=".auth.SignUpActivity" />
+        <activity android:name=".auth.forgetpass.NewPassword"></activity>
+        <activity android:name=".auth.forgetpass.ConfirmForgotPassword" />
+        <activity android:name=".auth.forgetpass.ForgetPassword" />
+        <activity android:name=".auth.signup.SignUpActivity" />
         <activity android:name=".home.Home" />
         <activity android:name=".splash.SplashScreen">
             <intent-filter>
@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.login.LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

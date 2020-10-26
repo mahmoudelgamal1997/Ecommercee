@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.favourite;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.utils.FavouritRecyclerAdapter;
@@ -34,12 +35,12 @@ import static com.example.elgaml.ecommerce.utils.Utils.showToast;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavouritFragment#newInstance} factory method to
+ * Use the {@link FavouriteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavouritFragment extends Fragment implements FavouritRecyclerAdapter.FavouritListner {
+public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapter.FavouritListner {
 
-    private  FavouritViewModel favouritViewModel;
+    private FavouriteViewModel favouriteViewModel;
     private HomeViewModel      homeViewModel;
     private String mUSER_ID = "UserId";
     private SharedPreferences prefs;
@@ -54,13 +55,13 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
     private BottomNavigationView navBar;
     private TextView fav_emputy;
 
-    public static FavouritFragment favouritFragment;
-    public FavouritFragment() {
+    public static FavouriteFragment favouriteFragment;
+    public FavouriteFragment() {
         // Required empty public constructor
     }
 
-    public static FavouritFragment newInstance(String param1, String param2) {
-        FavouritFragment fragment = new FavouritFragment();
+    public static FavouriteFragment newInstance(String param1, String param2) {
+        FavouriteFragment fragment = new FavouriteFragment();
 
         return fragment;
     }
@@ -80,8 +81,8 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
         progressBar=(ProgressBar)view.findViewById(R.id.progress_favourit);
         fav_emputy=(TextView)view.findViewById(R.id.fav_emputy);
         navBar = getActivity().findViewById(R.id.nav_view_bar);
-        favouritViewModel=new FavouritViewModel();
-        favouritViewModel.init();
+        favouriteViewModel =new FavouriteViewModel();
+        favouriteViewModel.init();
 
         homeViewModel= new HomeViewModel();
         homeViewModel.init();
@@ -100,7 +101,7 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
 
    //     hideBottomNavigationBar(recyclerView_favourit,navBar);
 
-        favouritViewModel.getFavourit(token).observe(getViewLifecycleOwner(), new Observer<FavouritResponse>() {
+        favouriteViewModel.getFavourit(token).observe(getViewLifecycleOwner(), new Observer<FavouritResponse>() {
             @Override
             public void onChanged(FavouritResponse favouritResponse) {
                 if(favouritResponse.getData().size()!=0){
@@ -127,7 +128,7 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
             String color = "1";
             Datum model = mfavourit.get(postion);
             Log.e("productId",model.getId()+"");
-            favouritViewModel.add_to_cart(token, String.valueOf(model.getId()), quatatiy, size, color).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+            favouriteViewModel.add_to_cart(token, String.valueOf(model.getId()), quatatiy, size, color).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                 @Override
                 public void onChanged(CartResponse cartResponse) {
 

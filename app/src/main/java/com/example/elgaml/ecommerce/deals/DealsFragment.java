@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.deals;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.elgaml.ecommerce.deals.DealsViewModel;
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.utils.BrandRecyclerAdapter;

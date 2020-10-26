@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.signup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.elgaml.ecommerce.auth.login.LoginActivity;
 import com.example.elgaml.ecommerce.home.Home;
 import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;

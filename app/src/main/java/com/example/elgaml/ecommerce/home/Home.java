@@ -9,12 +9,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.elgaml.ecommerce.fragment.CartFragment;
-import com.example.elgaml.ecommerce.fragment.DealsFragment;
-import com.example.elgaml.ecommerce.fragment.FavouritFragment;
-import com.example.elgaml.ecommerce.fragment.MyAccountFragment;
-import com.example.elgaml.ecommerce.fragment.NoConnectionFragment;
-import com.example.elgaml.ecommerce.fragment.HomeFragment;
+import com.example.elgaml.ecommerce.cart.CartFragment;
+import com.example.elgaml.ecommerce.deals.DealsFragment;
+import com.example.elgaml.ecommerce.favourite.FavouriteFragment;
+import com.example.elgaml.ecommerce.myaccount.MyAccountFragment;
+import com.example.elgaml.ecommerce.noconnection.NoConnectionFragment;
+import com.example.elgaml.ecommerce.homefragment.HomeFragment;
 import com.example.elgaml.ecommerce.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
@@ -22,7 +22,7 @@ import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 public class Home extends AppCompatActivity {
 
     HomeFragment homeFragment;
-    FavouritFragment favouritFragment;
+    FavouriteFragment favouriteFragment;
     CartFragment cartFragment;
     DealsFragment dealsFragment;
     MyAccountFragment accountfrgament;
@@ -58,10 +58,10 @@ public class Home extends AppCompatActivity {
                     }
                     case R.id.favourit_icon: {
                         if (isNetworkAvailable(Home.this)) {
-                            if (favouritFragment == null) {
-                                favouritFragment = new FavouritFragment();
+                            if (favouriteFragment == null) {
+                                favouriteFragment = new FavouriteFragment();
                             }
-                            changeFrgment(favouritFragment);
+                            changeFrgment(favouriteFragment);
                             return true;
                         } else {
                             changeFrgment(noConnectionFragment);

@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.myaccount;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.elgaml.ecommerce.BuildConfig;
 import com.example.elgaml.ecommerce.R;
+import com.example.elgaml.ecommerce.cart.CartFragment;
+import com.example.elgaml.ecommerce.favourite.FavouriteFragment;
 import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
@@ -119,8 +121,8 @@ public class MyAccountFragment extends Fragment {
         section_favourit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FavouritFragment favouritFragment= new FavouritFragment();
-                changeFrgment(favouritFragment);
+                FavouriteFragment favouriteFragment = new FavouriteFragment();
+                changeFrgment(favouriteFragment);
                 mBottomView.setSelectedItemId(R.id.favourit_icon);
             }
         });

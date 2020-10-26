@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.elgaml.ecommerce.home.Home;
-import com.example.elgaml.ecommerce.auth.LoginActivity;
+import com.example.elgaml.ecommerce.auth.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

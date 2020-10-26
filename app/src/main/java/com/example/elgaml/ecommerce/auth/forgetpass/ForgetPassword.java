@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.forgetpass;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,7 +22,7 @@ public class ForgetPassword extends AppCompatActivity {
 
   private   EditText phone_editetext;
   private   Button   send_reset_button;
-  private   ForgetPasswordViewModel forgetPasswordViewModel;
+  private ForgetPasswordViewModel forgetPasswordViewModel;
   private ProgressBar progressBar;
   private Toast toast;
    TextView errormsg;

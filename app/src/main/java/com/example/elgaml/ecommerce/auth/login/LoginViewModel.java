@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.login;
 
 import android.content.Intent;
 import android.view.View;

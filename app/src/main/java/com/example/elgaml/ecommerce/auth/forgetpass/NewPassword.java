@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.forgetpass;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;

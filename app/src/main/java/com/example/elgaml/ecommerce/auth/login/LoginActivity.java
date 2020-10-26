@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.auth;
+package com.example.elgaml.ecommerce.auth.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elgaml.ecommerce.R;
+import com.example.elgaml.ecommerce.auth.forgetpass.ForgetPassword;
+import com.example.elgaml.ecommerce.auth.signup.SignUpActivity;
 import com.example.elgaml.ecommerce.model.User;
 
 import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;

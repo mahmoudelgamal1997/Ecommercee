@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.fragment;
+package com.example.elgaml.ecommerce.homefragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
