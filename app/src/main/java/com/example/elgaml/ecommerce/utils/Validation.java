@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.text.TextUtils;
 import android.util.Patterns;

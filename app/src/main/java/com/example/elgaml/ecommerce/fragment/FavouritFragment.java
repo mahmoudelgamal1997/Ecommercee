@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.elgaml.ecommerce.Home.HomeViewModel;
+import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.Utils.FavouritRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.FavouritRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.FavouritModel.Datum;
@@ -29,9 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.Utils.Utils.hideBottomNavigationBar;
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
-import static com.example.elgaml.ecommerce.Utils.Utils.showToast;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.showToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +41,7 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
 
     private  FavouritViewModel favouritViewModel;
     private HomeViewModel      homeViewModel;
-    private String USER_ID = "UserId";
+    private String mUSER_ID = "UserId";
     private SharedPreferences prefs;
     private static final String MY_PREFS_NAME = "UserAuth";
     private String token;
@@ -87,7 +86,7 @@ public class FavouritFragment extends Fragment implements FavouritRecyclerAdapte
         homeViewModel= new HomeViewModel();
         homeViewModel.init();
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        token = prefs.getString(USER_ID, "");
+        token = prefs.getString(mUSER_ID, "");
         mfavourit = new ArrayList<>();
         mfavouritSeperate = new ArrayList<>();
 

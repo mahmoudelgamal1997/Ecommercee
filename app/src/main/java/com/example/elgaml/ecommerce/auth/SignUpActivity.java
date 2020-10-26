@@ -3,7 +3,7 @@ package com.example.elgaml.ecommerce.auth;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,9 +20,9 @@ import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;
 import com.example.elgaml.ecommerce.repostiory.SignUpRepository;
 
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
-import static com.example.elgaml.ecommerce.Utils.Validation.isValidEmail;
-import static com.example.elgaml.ecommerce.Utils.Validation.isValidPassword;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
+import static com.example.elgaml.ecommerce.utils.Validation.isValidPassword;
 
 public class SignUpActivity extends AppCompatActivity  {
 
@@ -32,10 +32,10 @@ public class SignUpActivity extends AppCompatActivity  {
     TextView signin_text,name_toast,email_toast,phone_toast,password_toast;
     Toast toast = null;
     boolean flag=true ;
-    String USER_ID="UserId";
-    String USER_NAME= "UserName";
-    String USER_EMAIL="UserEmail";
-    String USER_IMG="UserImage";
+    String mUSER_ID ="UserId";
+    String mUSER_NAME = "UserName";
+    String mUSER_EMAIL ="UserEmail";
+    String mUSER_IMG ="UserImage";
     private static final String MY_PREFS_NAME ="UserAuth" ;
     private ProgressBar progressBar;
 
@@ -128,10 +128,10 @@ public class SignUpActivity extends AppCompatActivity  {
                                 progressBar.setVisibility(View.VISIBLE);
                                 // Storing boolean
                                 signUpViewModel.editorSaveUser(MY_PREFS_NAME, SignUpActivity.this, "isExist", true);
-                                signUpViewModel.editorSaveUserID(MY_PREFS_NAME , SignUpActivity.this,USER_ID,user.getApiToken());
-                                signUpViewModel.editorSaveUserName(MY_PREFS_NAME,SignUpActivity.this,USER_NAME,user.getName());
-                                signUpViewModel.editorSaveUserEmail(MY_PREFS_NAME,SignUpActivity.this,USER_EMAIL,user.getEmail());
-                                signUpViewModel.editorSaveUserImage(MY_PREFS_NAME,SignUpActivity.this,USER_IMG,user.getImage());
+                                signUpViewModel.editorSaveUserID(MY_PREFS_NAME , SignUpActivity.this, mUSER_ID,user.getApiToken());
+                                signUpViewModel.editorSaveUserName(MY_PREFS_NAME,SignUpActivity.this, mUSER_NAME,user.getName());
+                                signUpViewModel.editorSaveUserEmail(MY_PREFS_NAME,SignUpActivity.this, mUSER_EMAIL,user.getEmail());
+                                signUpViewModel.editorSaveUserImage(MY_PREFS_NAME,SignUpActivity.this, mUSER_IMG,user.getImage());
                                 signUpViewModel.goToHome(getCurrentFocus());
                                 finish();
                                 progressBar.setVisibility(View.INVISIBLE);

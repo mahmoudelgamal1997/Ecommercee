@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,9 +30,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class MyAccountFragment extends Fragment {
 
     MyAccountViewModel viewModel;
-    private String USER_ID = "UserId";
-    private String USER_NAME= "UserName";
-    private String USER_EMAIL="UserEmail";
+    private String mUSER_ID = "UserId";
+    private String mUSER_NAME = "UserName";
+    private String mUSER_EMAIL ="UserEmail";
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor ;
     private static final String MY_PREFS_NAME = "UserAuth";
@@ -72,9 +72,9 @@ public class MyAccountFragment extends Fragment {
         userEmail= view.findViewById(R.id.userEmail);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = prefs.edit();
-        token = prefs.getString(USER_ID, "");
-        name=prefs.getString(USER_NAME,"");
-        email=prefs.getString(USER_EMAIL,"");
+        token = prefs.getString(mUSER_ID, "");
+        name=prefs.getString(mUSER_NAME,"");
+        email=prefs.getString(mUSER_EMAIL,"");
 
         Toolbar toolbar=(Toolbar)view.findViewById(R.id.toolbar_account);
         toolbar.setTitle("");

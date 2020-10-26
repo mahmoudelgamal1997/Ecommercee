@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.util.Log;
 

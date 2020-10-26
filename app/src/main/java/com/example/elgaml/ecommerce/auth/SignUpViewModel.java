@@ -3,21 +3,16 @@ package com.example.elgaml.ecommerce.auth;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.elgaml.ecommerce.Home.Home;
+import com.example.elgaml.ecommerce.home.Home;
 import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;
 import com.example.elgaml.ecommerce.repostiory.SignUpRepository;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static android.content.Context.MODE_PRIVATE;
 

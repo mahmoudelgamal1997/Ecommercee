@@ -1,15 +1,13 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.auth.LoginActivity;
 import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 import com.example.elgaml.ecommerce.repostiory.MyAccountRepository;

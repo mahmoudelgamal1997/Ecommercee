@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.util.Log;
 
@@ -9,11 +9,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.repostiory.CartRepository;
 
-import io.reactivex.Single;
 import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class CartViewModel extends ViewModel {

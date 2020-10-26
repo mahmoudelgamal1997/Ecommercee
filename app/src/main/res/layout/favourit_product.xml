@@ -12,7 +12,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_product"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="130dp"
         android:theme="@style/Theme.MaterialComponents.Light"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/favourit_image"
                 android:maxLines="1"
-                android:text="qwwwwwww"
+                android:text=""
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
@@ -54,7 +54,7 @@
                 android:layout_below="@+id/favourit_name"
                 android:layout_toRightOf="@+id/favourit_image"
                 android:maxLines="1"
-                android:text="e33"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="12dp" />
 

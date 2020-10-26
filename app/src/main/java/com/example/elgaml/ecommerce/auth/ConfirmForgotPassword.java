@@ -13,12 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.elgaml.ecommerce.Utils.CountDownTimer;
+import com.example.elgaml.ecommerce.utils.CountDownTimer;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.ForgetPasswordModel;
 import com.goodiebag.pinview.Pinview;
 
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 
 public class ConfirmForgotPassword extends AppCompatActivity {
 
@@ -26,8 +26,8 @@ public class ConfirmForgotPassword extends AppCompatActivity {
     TextView skip,pintoast;
     ConfirmPasswordViewModel viewModelConfirm;
     Button resend;
-    long AllTime= 30 * 1000;
-    long TimeInterval = 1000;
+    long allTime = 30 * 1000;
+    long timeInterval = 1000;
     MutableLiveData<Integer> codeMutableLiveData=new MutableLiveData<>();
     private Toast toast;
     ProgressBar progressBar;
@@ -51,7 +51,7 @@ public class ConfirmForgotPassword extends AppCompatActivity {
 
         codeMutableLiveData.setValue(code);
 
-        final CountDownTimer countDownTimer=new CountDownTimer(AllTime,TimeInterval);
+        final CountDownTimer countDownTimer=new CountDownTimer(allTime, timeInterval);
         countDownTimer.cancel();
         countDownTimer.start();
 

@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,28 +10,22 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.Utils.CartRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.CartRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.Utils.Utils.hideBottomNavigationBar;
-import static com.example.elgaml.ecommerce.Utils.Utils.showToast;
+import static com.example.elgaml.ecommerce.utils.Utils.showToast;
 
 
 public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRecyclerListner {
@@ -41,7 +35,7 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
     SharedPreferences prefs;
     private static final String MY_PREFS_NAME ="UserAuth" ;
     String USER_ID="UserId";
-    private List<Cart> mList,mSeperateList,arraylist;
+    private List<Cart> mList,mSeperateList;
     private CartRecyclerAdapter cartRecyclerAdapter;
     private BottomNavigationView navBar;
     TextView price_number , shipping_number , total_number,number_Items,toast_emputy,subtotalWord ,total_word,shipping_word ;

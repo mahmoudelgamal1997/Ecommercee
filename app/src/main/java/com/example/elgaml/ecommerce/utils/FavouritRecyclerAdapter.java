@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.view.LayoutInflater;
 import android.view.View;

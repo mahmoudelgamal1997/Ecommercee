@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -121,7 +121,6 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
 
     Animation makeAnimation() {
         final Animation myAnim = AnimationUtils.loadAnimation(context, R.anim.love_animation);
-
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         BonusInterpolator interpolator = new BonusInterpolator(0.3, 20);
         myAnim.setInterpolator(interpolator);

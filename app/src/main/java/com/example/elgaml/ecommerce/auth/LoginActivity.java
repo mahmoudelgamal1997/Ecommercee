@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.User;
-import com.example.elgaml.ecommerce.retrofit.APIinterface;
 
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
-import static com.example.elgaml.ecommerce.Utils.Validation.isValidEmail;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
 
 public class LoginActivity extends AppCompatActivity  {
 

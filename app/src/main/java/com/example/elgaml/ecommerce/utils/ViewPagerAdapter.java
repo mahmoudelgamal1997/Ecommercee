@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.content.Context;
 import android.view.View;
@@ -7,9 +7,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.DealModel.Ad;
 import com.squareup.picasso.Picasso;
 

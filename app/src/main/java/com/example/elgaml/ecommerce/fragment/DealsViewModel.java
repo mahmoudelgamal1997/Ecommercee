@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Home;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.util.Log;
 
@@ -6,20 +6,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.elgaml.ecommerce.home.HomeRepository;
+import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
-import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public class HomeViewModel extends ViewModel {
+public class DealsViewModel extends ViewModel {
 
     HomeRepository homeRepository;
     CompositeDisposable disposable;
     MutableLiveData<Throwable> throwableMutableLiveData;
-   public void init(){
+    public void init(){
         if (homeRepository==null){
             homeRepository= new HomeRepository();
             throwableMutableLiveData= new MutableLiveData<>();
@@ -28,30 +29,29 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public LiveData<HomeResponse> getHome(String api_token){
-         final MutableLiveData<HomeResponse> mutableLiveData = new MutableLiveData<>();
-       homeRepository.getHome(api_token).subscribe(new Observer<HomeResponse>() {
-           @Override
-           public void onSubscribe(Disposable d) {
+    public LiveData<DealResponse> getDeals(){
+        final MutableLiveData<DealResponse> mutableLiveData = new MutableLiveData<>();
+        homeRepository.getDeals().subscribe(new Observer<DealResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-           }
+            }
 
-           @Override
-           public void onNext(HomeResponse homeModel) {
+            @Override
+            public void onNext(DealResponse dealResponse) {
+                mutableLiveData.setValue(dealResponse);
+            }
 
-         mutableLiveData.setValue(homeModel);
-           }
+            @Override
+            public void onError(Throwable e) {
+                Log.e("ERrorrrr",e.getMessage());
+            }
 
-           @Override
-           public void onError(Throwable e) {
-            Log.e("ERrorrrr",e.getMessage());
-           }
+            @Override
+            public void onComplete() {
 
-           @Override
-           public void onComplete() {
-
-           }
-       });
+            }
+        });
         return mutableLiveData;
     }
 
@@ -66,7 +66,8 @@ public class HomeViewModel extends ViewModel {
 
             @Override
             public void onSuccess(AddToFavourit addToFavourit) {
-            mutableLiveData.setValue(addToFavourit);
+                mutableLiveData.setValue(addToFavourit);
+                Log.e("doneee", addToFavourit.getMessage());
             }
 
             @Override
@@ -79,4 +80,5 @@ public class HomeViewModel extends ViewModel {
 
 
     }
+
 }

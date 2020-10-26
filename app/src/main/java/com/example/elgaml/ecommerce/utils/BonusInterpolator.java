@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 public class BonusInterpolator  implements android.view.animation.Interpolator {
     private double mAmplitude = 1;

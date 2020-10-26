@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,12 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.elgaml.ecommerce.Home.HomeViewModel;
+import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.Utils.BrandRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.CategoryRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.HotDealsRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.ViewPagerAdapter;
+import com.example.elgaml.ecommerce.utils.BrandRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.CategoryRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.HotDealsRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.ViewPagerAdapter;
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 
 import static android.content.Context.MODE_PRIVATE;

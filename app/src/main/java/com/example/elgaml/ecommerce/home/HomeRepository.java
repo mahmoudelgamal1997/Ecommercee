@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Home;
+package com.example.elgaml.ecommerce.home;
 
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;

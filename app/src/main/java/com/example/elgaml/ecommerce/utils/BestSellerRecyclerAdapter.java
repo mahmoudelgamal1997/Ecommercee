@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,7 +16,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elgaml.ecommerce.Home.HomeViewModel;
+import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 
 public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRecyclerAdapter.BestSellerViewHolder> {
 

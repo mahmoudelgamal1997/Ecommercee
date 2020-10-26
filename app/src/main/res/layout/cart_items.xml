@@ -97,7 +97,7 @@
 
 
                 <TextView
-                    android:id="@+id/add"
+                    android:id="@+id/remove"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:textSize="16dp"
@@ -116,7 +116,7 @@
                     android:layout_marginEnd="12dp"
                     />
             <TextView
-                android:id="@+id/remove"
+                android:id="@+id/add"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:textColor="#000"

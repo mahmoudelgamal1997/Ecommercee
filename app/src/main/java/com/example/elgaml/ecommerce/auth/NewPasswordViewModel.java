@@ -5,7 +5,7 @@ import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.elgaml.ecommerce.Home.Home;
+import com.example.elgaml.ecommerce.home.Home;
 import com.example.elgaml.ecommerce.model.ChangePasswordModel;
 import com.example.elgaml.ecommerce.repostiory.NewPasswordRepository;
 

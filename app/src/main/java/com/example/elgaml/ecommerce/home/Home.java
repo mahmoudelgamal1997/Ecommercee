@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Home;
+package com.example.elgaml.ecommerce.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -9,15 +9,15 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.elgaml.ecommerce.Fragment.CartFragment;
-import com.example.elgaml.ecommerce.Fragment.DealsFragment;
-import com.example.elgaml.ecommerce.Fragment.FavouritFragment;
-import com.example.elgaml.ecommerce.Fragment.MyAccountFragment;
-import com.example.elgaml.ecommerce.Fragment.NoConnectionFragment;
-import com.example.elgaml.ecommerce.Fragment.HomeFragment;
+import com.example.elgaml.ecommerce.fragment.CartFragment;
+import com.example.elgaml.ecommerce.fragment.DealsFragment;
+import com.example.elgaml.ecommerce.fragment.FavouritFragment;
+import com.example.elgaml.ecommerce.fragment.MyAccountFragment;
+import com.example.elgaml.ecommerce.fragment.NoConnectionFragment;
+import com.example.elgaml.ecommerce.fragment.HomeFragment;
 import com.example.elgaml.ecommerce.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 
 public class Home extends AppCompatActivity {
 

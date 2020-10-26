@@ -1,7 +1,6 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,18 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.elgaml.ecommerce.Home.HomeViewModel;
+import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.Utils.BestSellerRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.CategoryRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.NewArrivalRecyclerAdapter;
-import com.example.elgaml.ecommerce.Utils.HotDealsRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.BestSellerRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.CategoryRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.NewArrivalRecyclerAdapter;
+import com.example.elgaml.ecommerce.utils.HotDealsRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
@@ -36,13 +34,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 
 public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.NewArrivalRecyclerAdapterListiner {
 
     RecyclerView recyclerView_new_arrival, recyclerView_best_seller, recyclerView_category, recyclerView_hotdeals;
     HomeViewModel homeViewModel;
-    String USER_ID = "UserId";
+    String mUSER_ID = "UserId";
     SharedPreferences prefs;
     private static final String MY_PREFS_NAME = "UserAuth";
     TextView hot_deals, seemore_hotdeals;
@@ -82,7 +80,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         seemore_hotdeals = (TextView) view.findViewById(R.id.seemore_hot_deals);
         next_img = (ImageView) view.findViewById(R.id.next_sign);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        token = prefs.getString(USER_ID, "");
+        token = prefs.getString(mUSER_ID, "");
 
         recyclerView_new_arrival = (RecyclerView) view.findViewById(R.id.newarrival_recycler);
         recyclerView_new_arrival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

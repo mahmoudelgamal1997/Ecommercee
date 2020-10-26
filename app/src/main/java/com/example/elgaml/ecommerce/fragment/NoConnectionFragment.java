@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Fragment;
+package com.example.elgaml.ecommerce.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.elgaml.ecommerce.R;
 
-import static com.example.elgaml.ecommerce.Utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
 
 public class NoConnectionFragment extends Fragment {
     @Nullable

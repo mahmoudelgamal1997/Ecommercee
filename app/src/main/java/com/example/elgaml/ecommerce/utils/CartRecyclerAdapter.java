@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.Utils;
+package com.example.elgaml.ecommerce.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -59,6 +59,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         holder.plus_button.setText("\uF055");
         holder.delete_from_cart.setText("\uf2ed");
         holder.quantity.setText(model.getQuantity()+"");
+
         holder.delete_from_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

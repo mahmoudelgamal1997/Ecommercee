@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.ChangePasswordModel;
 
-import static com.example.elgaml.ecommerce.Utils.Validation.isValidPassword;
+import static com.example.elgaml.ecommerce.utils.Validation.isValidPassword;
 
 
 public class NewPassword extends AppCompatActivity {

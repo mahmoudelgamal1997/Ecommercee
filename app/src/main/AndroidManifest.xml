@@ -19,7 +19,7 @@
         <activity android:name=".auth.ConfirmForgotPassword" />
         <activity android:name=".auth.ForgetPassword" />
         <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".Home.Home" />
+        <activity android:name=".home.Home" />
         <activity android:name=".splash.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
