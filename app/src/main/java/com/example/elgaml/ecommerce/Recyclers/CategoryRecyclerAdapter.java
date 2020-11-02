@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.HomeModel.TopCategory;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -17,9 +18,11 @@ import java.util.List;
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder> {
 
     private List<TopCategory> list;
+    private ProjectUtils utils ;
     //constructor
     public CategoryRecyclerAdapter( List<TopCategory> list){
         this.list = list;
+        utils= new ProjectUtils();
     }
     @NonNull
     @Override
@@ -33,7 +36,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     {
         //instace from new Arrival product
         final TopCategory model=list.get(position);
-        loadImage(model.getImage(),holder.category_image);
+       utils.loadImage(model.getImage(),holder.category_image);
         Log.e("img",model.getImage());
         holder.category_name.setText(String.valueOf(model.getNameEn()));
     }
@@ -63,7 +66,5 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             category_name  = (TextView)itemView.findViewById(R.id.category_name);
         }}
 
-    void loadImage(String url,ImageView img){
-        Picasso.get().load("http://e-commerce-dev.intcore.net/"+url).placeholder(R.drawable.refresh).into(img);
-    }
+
 }

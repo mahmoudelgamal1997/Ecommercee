@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.utils.FavouritRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.FavouritRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.FavouritModel.Datum;
@@ -30,8 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
-import static com.example.elgaml.ecommerce.utils.Utils.showToast;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.showToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,8 +99,6 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
         favouritRecyclerAdapter= new FavouritRecyclerAdapter(mfavourit,this);
         recyclerView_favourit.setAdapter(favouritRecyclerAdapter);
 
-   //     hideBottomNavigationBar(recyclerView_favourit,navBar);
-
         favouriteViewModel.getFavourit(token).observe(getViewLifecycleOwner(), new Observer<FavouritResponse>() {
             @Override
             public void onChanged(FavouritResponse favouritResponse) {
@@ -127,7 +125,6 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
             String size = "1";
             String color = "1";
             Datum model = mfavourit.get(postion);
-            Log.e("productId",model.getId()+"");
             favouriteViewModel.add_to_cart(token, String.valueOf(model.getId()), quatatiy, size, color).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                 @Override
                 public void onChanged(CartResponse cartResponse) {

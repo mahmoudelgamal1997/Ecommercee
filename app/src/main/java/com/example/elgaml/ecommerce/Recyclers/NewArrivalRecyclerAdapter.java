@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.HomeModel.NewArrival;
-import com.squareup.picasso.Picasso;
+import com.example.elgaml.ecommerce.utils.BonusInterpolator;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 
 import java.util.List;
 
@@ -30,11 +31,13 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
     //constructor
     private Context context;
     private NewArrivalRecyclerAdapterListiner listiner;
-
+    private ProjectUtils utils;
     public NewArrivalRecyclerAdapter(Context context, List<NewArrival> list, NewArrivalRecyclerAdapterListiner listiner) {
         this.list = list;
         this.context = context;
         this.listiner = listiner;
+        utils=new ProjectUtils();
+
     }
 
 
@@ -56,13 +59,13 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
         }
 
        // holder.love.setAnimation(makeAnimation());
-        loadImage(model.getDefaultImage(), holder.product);
+       utils.loadImage(model.getDefaultImage(), holder.product);
         holder.item_price.setText(String.valueOf(model.getPrice() + " $"));
         holder.item_category.setText(String.valueOf(model.getNameEn()));
         holder.love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.love.setAnimation(makeAnimation());
+                holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                 listiner.onClickFav(position);
             }
         });
@@ -106,26 +109,14 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
             item_price = (TextView) itemView.findViewById(R.id.item_price);
 
 
-            love.setAnimation(makeAnimation());
+            love.setAnimation(utils.makeAnimation(itemView.getContext()));
         }
 
 
 
     }
 
-    void loadImage(String url, ImageView img) {
-        Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).placeholder(R.drawable.refresh).into(img);
-    }
 
-
-
-    Animation makeAnimation() {
-        final Animation myAnim = AnimationUtils.loadAnimation(context, R.anim.love_animation);
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
-        BonusInterpolator interpolator = new BonusInterpolator(0.3, 20);
-        myAnim.setInterpolator(interpolator);
-        return myAnim;
-    }
 }
 
 

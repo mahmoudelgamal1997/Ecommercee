@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,11 +19,13 @@ import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.HotDeals;
+import com.example.elgaml.ecommerce.utils.BonusInterpolator;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecyclerAdapter.HotDealsViewHolder> {
 
@@ -34,12 +36,15 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
     //constructor
     private HomeViewModel homeViewModel;
     private Context context;
+    private ProjectUtils utils;
+
     public HotDealsRecyclerAdapter(Context context, List<HotDeals> list, String token, LifecycleOwner lifecycleOwner, HomeViewModel homeViewModel){
         this.list = list;
         this.token = token;
         this.homeViewModel = homeViewModel;
         this.owner = lifecycleOwner;
         this.context=context;
+        utils=new ProjectUtils();
     }
 
 
@@ -48,7 +53,6 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
     public HotDealsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View row= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_layout,parent,false);
         HotDealsViewHolder hold=new HotDealsViewHolder(row);
-
         return hold;
     }
 
@@ -70,9 +74,9 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
         }
 
             //make animation
-            holder.love.setAnimation(makeAnimation());
+            holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
 
-            loadImage(model.getDefaultImage(), holder.product);
+            utils.loadImage(model.getDefaultImage(), holder.product);
 
             holder.discount_text.setText(((String) model.getTodayOffer()));
 
@@ -81,7 +85,7 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
             holder.love.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    holder.love.setAnimation(makeAnimation());
+                    holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                     if (isNetworkAvailable(context)) {
 
                         homeViewModel.addFavourit(token, String.valueOf(model.getId())).observe(owner, new Observer<AddToFavourit>() {
@@ -101,7 +105,7 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
 
                     } else {
                         //no connection
-                        showToast("No internet connection", context);
+                        utils.showToast(toast,"No internet connection", context);
                     }
                 }
             });
@@ -143,26 +147,5 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
 
 
 
-    }
-
-    void loadImage(String url,ImageView img){
-        Picasso.get().load("http://e-commerce-dev.intcore.net/"+url).placeholder(R.drawable.refresh).into(img);
-    }
-
-    void showToast(String msg, Context context){
-        if (toast!=null){
-            toast.cancel();
-        }
-        toast= Toast.makeText((context),msg,Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    Animation makeAnimation(){
-        final Animation myAnim = AnimationUtils.loadAnimation(context, R.anim.love_animation);
-
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
-        BonusInterpolator interpolator = new BonusInterpolator(0.3, 20);
-        myAnim.setInterpolator(interpolator);
-        return myAnim;
     }
 }

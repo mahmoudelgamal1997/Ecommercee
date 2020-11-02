@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.util.Log;
@@ -20,11 +20,13 @@ import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
+import com.example.elgaml.ecommerce.utils.BonusInterpolator;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRecyclerAdapter.BestSellerViewHolder> {
 
@@ -32,7 +34,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
     private String token;
     private LifecycleOwner owner;
     private Toast toast;
-
+    private ProjectUtils utils;
     //constructor
     private HomeViewModel homeViewModel;
     private Context context;
@@ -42,6 +44,8 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
         this.homeViewModel = homeViewModel;
         this.owner = lifecycleOwner;
         this.context=context;
+        utils=new ProjectUtils();
+
     }
 
 
@@ -68,7 +72,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
 
        // holder.love.setAnimation(makeAnimation());
 
-        loadImage(model.getDefaultImage(),holder.product);
+        utils.loadImage(model.getDefaultImage(),holder.product);
         /*
         if (model.getTodayOffer()!=null){
             holder.discount_text.setText(((String) model.getTodayOffer()));
@@ -80,7 +84,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
         holder.love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.love.setAnimation(makeAnimation());
+                holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                 if (isNetworkAvailable(context)){
 
                     Log.e("Clicked","clicked");
@@ -102,7 +106,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
 
                 }else {
                     //no connection
-                    showToast("No internet connection",context);
+                    utils.showToast(toast,"No internet connection",context);
                 }
             }
         });
@@ -141,33 +145,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
             discount_text=(TextView)itemView.findViewById(R.id.text_discount);
 
         }
-
-
-
     }
-
-    void loadImage(String url,ImageView img){
-        Picasso.get().load("http://e-commerce-dev.intcore.net/"+url).into(img);
-    }
-
-    void showToast(String msg, Context context){
-        if (toast!=null){
-            toast.cancel();
-        }
-        toast= Toast.makeText((context),msg,Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    Animation makeAnimation(){
-        final Animation myAnim = AnimationUtils.loadAnimation(context, R.anim.love_animation);
-
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
-        BonusInterpolator interpolator = new BonusInterpolator(0.3, 20);
-        myAnim.setInterpolator(interpolator);
-        return myAnim;
-    }
-
-
 
 }
 

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.ForgetPasswordModel;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class ForgetPassword extends AppCompatActivity {
 

@@ -18,7 +18,7 @@ import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.ForgetPasswordModel;
 import com.goodiebag.pinview.Pinview;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class ConfirmForgotPassword extends AppCompatActivity {
 

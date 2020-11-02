@@ -19,7 +19,7 @@ import com.example.elgaml.ecommerce.auth.forgetpass.ForgetPassword;
 import com.example.elgaml.ecommerce.auth.signup.SignUpActivity;
 import com.example.elgaml.ecommerce.model.User;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
 
 public class LoginActivity extends AppCompatActivity  {

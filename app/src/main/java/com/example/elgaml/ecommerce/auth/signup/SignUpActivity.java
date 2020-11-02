@@ -20,7 +20,7 @@ import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;
 import com.example.elgaml.ecommerce.repostiory.SignUpRepository;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
 import static com.example.elgaml.ecommerce.utils.Validation.isValidPassword;
 

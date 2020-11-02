@@ -6,7 +6,6 @@ import com.example.elgaml.ecommerce.retrofit.APIinterface;
 import com.example.elgaml.ecommerce.retrofit.RetrofitRequest;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ForgetPasswordRepository
@@ -32,7 +31,7 @@ public class ForgetPasswordRepository
 
     public Single<ForgetPasswordModel> send_reset(String phone)
     {
-        return apIinterface.send_reset_password(phone)
+        return apIinterface.send_reset_password_code(phone)
                  .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

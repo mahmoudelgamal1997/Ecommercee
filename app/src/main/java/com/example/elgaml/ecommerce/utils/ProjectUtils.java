@@ -6,14 +6,16 @@ import android.net.NetworkInfo;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elgaml.ecommerce.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
-public class Utils {
+public class ProjectUtils {
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager
@@ -50,7 +52,23 @@ public class Utils {
         toast.show();
     }
 
-  public static Animation makeAnimation(Context context) {
+
+
+    public void loadImage(String url, ImageView img) {
+        Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).placeholder(R.drawable.refresh).into(img);
+    }
+
+    public void showToast(Toast toast, String msg, Context context){
+        if (toast!=null){
+            toast.cancel();
+        }
+        toast= Toast.makeText((context),msg,Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+
+
+   public Animation makeAnimation(Context context){
         final Animation myAnim = AnimationUtils.loadAnimation(context, R.anim.love_animation);
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20

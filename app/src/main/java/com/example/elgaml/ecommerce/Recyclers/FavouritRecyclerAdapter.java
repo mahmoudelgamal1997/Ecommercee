@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.Datum;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -17,10 +18,14 @@ public class FavouritRecyclerAdapter  extends RecyclerView.Adapter<FavouritRecyc
 
     private List<Datum> list;
     private FavouritListner favouritListner;
+    private ProjectUtils utils;
+
     //constructor
     public FavouritRecyclerAdapter(List<Datum> list,FavouritListner favouritListner) {
         this.list = list;
         this.favouritListner = favouritListner;
+        utils= new ProjectUtils();
+
     }
 
     @NonNull
@@ -36,7 +41,7 @@ public class FavouritRecyclerAdapter  extends RecyclerView.Adapter<FavouritRecyc
 
         //instace from new Arrival product
         final Datum model = list.get(position);
-        loadImage(model.getDefaultImage(), holder.favourit_image);
+        utils.loadImage(model.getDefaultImage(), holder.favourit_image);
         holder.item_name.setText(model.getNameEn());
         holder.item_price.setText(model.getPrice()+" $");
 
@@ -88,9 +93,9 @@ public class FavouritRecyclerAdapter  extends RecyclerView.Adapter<FavouritRecyc
         }
     }
 
-    void loadImage(String url, ImageView img) {
-        Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).into(img);
-    }
+//    void loadImage(String url, ImageView img) {
+//        Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).into(img);
+//    }
 
 
     public interface  FavouritListner{

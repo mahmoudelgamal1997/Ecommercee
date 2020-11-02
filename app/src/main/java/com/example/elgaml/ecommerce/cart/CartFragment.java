@@ -18,15 +18,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.cart.CartViewModel;
-import com.example.elgaml.ecommerce.utils.CartRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.CartRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.utils.Utils.showToast;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.showToast;
 
 
 public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRecyclerListner {

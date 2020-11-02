@@ -18,10 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.utils.BestSellerRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.CategoryRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.NewArrivalRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.HotDealsRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.BestSellerRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.CategoryRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.NewArrivalRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.HotDealsRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.NewArrivalRecyclerAdapterListiner {
 

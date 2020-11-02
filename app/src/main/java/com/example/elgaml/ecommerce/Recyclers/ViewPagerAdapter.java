@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.elgaml.ecommerce.model.DealModel.Ad;
-import com.squareup.picasso.Picasso;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 
 import java.util.List;
 
@@ -17,6 +17,8 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private List<Ad> list;
+    private ProjectUtils utils = new ProjectUtils();
+
     public ViewPagerAdapter(Context context,List<Ad> list){
         this.context = context;
         this.list=list;
@@ -36,7 +38,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView img = new ImageView(context);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        loadImage(list.get(position).getImage(),img);
+        utils.loadImage(list.get(position).getImage(),img);
         container.addView(img);
         return img;
     }
@@ -44,8 +46,5 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((ImageView)object);
-    }
-    void loadImage(String url,ImageView img){
-        Picasso.get().load("http://e-commerce-dev.intcore.net/"+url).into(img);
     }
 }

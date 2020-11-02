@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.DealModel.TopBrand;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,10 +22,13 @@ public class BrandRecyclerAdapter  extends RecyclerView.Adapter<BrandRecyclerAda
 
     private List<TopBrand> list;
     private Toast toast;
+    private ProjectUtils utils;
 
     //constructor
     public BrandRecyclerAdapter(Context context, List<TopBrand> list) {
+
         this.list = list;
+        utils= new ProjectUtils();
     }
 
 
@@ -33,7 +37,6 @@ public class BrandRecyclerAdapter  extends RecyclerView.Adapter<BrandRecyclerAda
     public  BrandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand_layout, parent, false);
         BrandViewHolder hold = new BrandViewHolder(row);
-
         return hold;
     }
 
@@ -43,7 +46,7 @@ public class BrandRecyclerAdapter  extends RecyclerView.Adapter<BrandRecyclerAda
         //instace from new Arrival product
         final TopBrand model = list.get(position);
 
-        loadImage(model.getImage(), holder.brand_image);
+        utils.loadImage(model.getImage(), holder.brand_image);
         Log.e("img", model.getImage());
     }
 
@@ -66,7 +69,5 @@ public class BrandRecyclerAdapter  extends RecyclerView.Adapter<BrandRecyclerAda
         }
     }
 
-    void loadImage(String url, ImageView img) {
-        Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).placeholder(R.drawable.refresh).into(img);
-    }
+
 }

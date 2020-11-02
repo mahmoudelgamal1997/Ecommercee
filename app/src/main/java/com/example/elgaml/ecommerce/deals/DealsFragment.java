@@ -17,13 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.elgaml.ecommerce.deals.DealsViewModel;
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
-import com.example.elgaml.ecommerce.utils.BrandRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.CategoryRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.HotDealsRecyclerAdapter;
-import com.example.elgaml.ecommerce.utils.ViewPagerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.BrandRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.CategoryRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.HotDealsRecyclerAdapter;
+import com.example.elgaml.ecommerce.Recyclers.ViewPagerAdapter;
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 
 import static android.content.Context.MODE_PRIVATE;

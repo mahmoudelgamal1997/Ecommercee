@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.homefragment.HomeFragment;
 
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class NoConnectionFragment extends Fragment {
     @Nullable

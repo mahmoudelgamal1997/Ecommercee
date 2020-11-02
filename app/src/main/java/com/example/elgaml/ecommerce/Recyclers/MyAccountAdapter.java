@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.MyAccountModel.MyAccountItem;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class MyAccountAdapter  extends BaseAdapter {
 
     private List<MyAccountItem> list;
     private Context context;
+
     public MyAccountAdapter(){
 
     }

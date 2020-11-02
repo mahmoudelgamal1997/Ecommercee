@@ -17,7 +17,7 @@ import com.example.elgaml.ecommerce.noconnection.NoConnectionFragment;
 import com.example.elgaml.ecommerce.homefragment.HomeFragment;
 import com.example.elgaml.ecommerce.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import static com.example.elgaml.ecommerce.utils.Utils.isNetworkAvailable;
+import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class Home extends AppCompatActivity {
 

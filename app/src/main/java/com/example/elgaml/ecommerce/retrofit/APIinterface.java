@@ -25,104 +25,48 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIinterface {
+
+
+
     @FormUrlEncoded
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @POST("v1/user/auth/signin")
+    @POST(GlobalKeys.signIN)
     Call<SignInModel> signin(@Field("name") String name ,
                              @Field("password" ) String password);
 
 
     @FormUrlEncoded
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @POST("v1/user/auth/signup")
+    @POST(GlobalKeys.signUP)
     Call<SignUpModel> signup (@Field("name") String name ,
                               @Field("email") String email,
                               @Field("phone") String phone,
                               @Field("password" ) String password);
 
-
     @FormUrlEncoded
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @POST("v1/user/auth/send-reset-password-code")
-    Single<ForgetPasswordModel> send_reset_password(@Field("phone") String phone);
+    @POST(GlobalKeys.sendResetPasswordCode)
+    Single<ForgetPasswordModel> send_reset_password_code(@Field("phone") String phone);
 
 
-
-
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-
-    @PATCH("v1/user/auth/reset-password")
+    @PATCH(GlobalKeys.newPassword)
     Single<ChangePasswordModel> send_new_password(@Query("phone") String phone,
                                                 @Query("reset_password_code") String reset_password_code,
                                @Query("password") String password);
 
-
-
-
-
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @GET("v1/user/app/home")
+    @GET(GlobalKeys.home)
     Observable<HomeResponse> getHome(@Query("api_token")String api_token);
 
-
-
-
     @FormUrlEncoded
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @POST("v1/user/app/action/favourite")
+    @POST(GlobalKeys.addFavourit)
     Single<AddToFavourit> add_Favourit(@Field("api_token") String api_token,
                                        @Field("product_id") String product_id);
 
-
-
-
-
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @GET("v1/user/app/deals-page")
+    @GET(GlobalKeys.getDeals)
     Observable<DealResponse> getDeals();
 
-
-
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @GET("v1/user/auth/favourite")
+    @GET(GlobalKeys.getFavourit)
     Observable<FavouritResponse> getFavourit(@Query("api_token") String api_token);
 
-
-
     @FormUrlEncoded
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @POST("v1/user/app/cart/add")
+    @POST(GlobalKeys.addCart)
     Observable<CartResponse> add_to_cart(@Field("api_token") String api_token,
                                          @Field("product_id") String product_id,
                                          @Field("quantity") String quantity,
@@ -130,31 +74,21 @@ public interface APIinterface {
                                          @Field("color_id") String color_id);
 
 
-    @Headers({"Accept: application/json", "Content-Type: application/x-www-form-urlencoded"})
-    @GET("v1/user/app/cart/get-carts")
+    @GET(GlobalKeys.getCart)
     Single<CartResponse> getCarts(@Query("api_token") String api_token);
 
 
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/x-www-form-urlencoded"
-    })
-    @GET("v1/user/auth/get-profile")
+    @GET(GlobalKeys.profile)
     Single<UserResponse> getProfile(@Query("api_token")String api_token);
 
-
-
-    @Headers({"Accept: application/json", "Content-Type: application/x-www-form-urlencoded"})
-    @PATCH("v1/user/app/cart/update-cart")
+    @PATCH(GlobalKeys.updateCart)
     Single<CartResponse> updateCart(@Query("api_token") String api_token,
                                     @Query("quantity") int quantity,
                                     @Query("cart_id") int cart_id);
 
-
-    @Headers({"Accept: application/json", "Content-Type: application/x-www-form-urlencoded"})
-    @DELETE("v1/user/app/cart/delete/{cart_id}")
+    @DELETE(GlobalKeys.deleteCart+"{cart_id}")
     Single<CartResponse> deleteCart(@Path("cart_id") int cart_id, @Query("api_token") String api_token );
+
 
 
 }

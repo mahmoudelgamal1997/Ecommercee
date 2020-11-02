@@ -1,4 +1,4 @@
-package com.example.elgaml.ecommerce.utils;
+package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
+import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
     private List<Cart> list;
     Context context;
     CartRecyclerListner listner;
+    private ProjectUtils utils;
     public interface CartRecyclerListner{
         void onClickDelete(int postion);
         //add or minus button
@@ -32,6 +34,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         this.list = list;
         this.context= context;
         this.listner=listner;
+        utils= new ProjectUtils();
     }
 
     @NonNull
@@ -47,7 +50,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
         //instace from new Arrival product
         final Cart model = list.get(position);
-        loadImage(model.getProduct().getDefaultImage(), holder.cart_img);
+       utils.loadImage(model.getProduct().getDefaultImage(), holder.cart_img);
 
         holder.item_name.setText(model.getProduct().getNameEn());
         holder.item_price.setText(model.getProduct().getPrice()+" $");
@@ -120,6 +123,4 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
             quantity=(TextView)itemView.findViewById(R.id.quantity);
         }
     }
-    void loadImage(String url, ImageView img) {
-        Picasso.get().load("http://e-commerce-dev.intcore.net/"+url).into(img);
-    }}
+   }
