@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,6 +62,10 @@ public class DealsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar=(Toolbar)getActivity().findViewById(R.id.toolbar_base);
+        toolbar.setTitle("Deals");
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         final ViewPager viewPager=(ViewPager)view.findViewById(R.id.viewPager);
         hot_txt=(TextView)view.findViewById(R.id.hot_deals_today_txt);

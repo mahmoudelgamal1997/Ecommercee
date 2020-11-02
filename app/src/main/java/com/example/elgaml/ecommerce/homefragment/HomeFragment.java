@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -70,8 +72,12 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Toolbar toolbar=(Toolbar)getActivity().findViewById(R.id.toolbar_base);
 
-        androidx.appcompat.widget.Toolbar mToolbar = (androidx.appcompat.widget.Toolbar) view.findViewById(R.id.toolbar_home);
+        toolbar.setTitleMarginStart(40);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
+
 
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         homeViewModel.init();

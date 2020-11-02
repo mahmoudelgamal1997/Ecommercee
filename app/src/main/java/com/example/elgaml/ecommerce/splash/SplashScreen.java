@@ -16,7 +16,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        int welcome_time = 3000;
+        int welcome_time = 1000;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
