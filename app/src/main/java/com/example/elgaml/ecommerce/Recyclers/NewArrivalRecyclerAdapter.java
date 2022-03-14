@@ -4,19 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.HomeModel.NewArrival;
-import com.example.elgaml.ecommerce.utils.BonusInterpolator;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
-
 import java.util.List;
 
 public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRecyclerAdapter.NewArrivalHolder> {

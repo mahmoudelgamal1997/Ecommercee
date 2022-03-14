@@ -104,12 +104,12 @@ public class DealsFragment extends Fragment {
                 next_hot_deals.setVisibility(View.VISIBLE);
                 hot_txt.setVisibility(View.VISIBLE);
                 seemore_hot_txt.setVisibility(View.VISIBLE);
-                HotDealsRecyclerAdapter hotDealsRecyclerView = new HotDealsRecyclerAdapter(getContext(), dealResponse.getHotDeals(), token, getViewLifecycleOwner(), homeViewModel);
-                hot_deals_recycler.setAdapter(hotDealsRecyclerView);
+            //    HotDealsRecyclerAdapter hotDealsRecyclerView = new HotDealsRecyclerAdapter(getContext(), dealResponse.getHotDeals(), token, getViewLifecycleOwner(), homeViewModel);
+            //    hot_deals_recycler.setAdapter(hotDealsRecyclerView);
             }
 
-                CategoryRecyclerAdapter categoryRecyclerAdapter = new CategoryRecyclerAdapter(dealResponse.getTopCategories());
-                recyclerView_category.setAdapter(categoryRecyclerAdapter);
+//                CategoryRecyclerAdapter categoryRecyclerAdapter = new CategoryRecyclerAdapter(dealResponse.getTopCategories());
+//                recyclerView_category.setAdapter(categoryRecyclerAdapter);
 
 
                 BrandRecyclerAdapter brandRecyclerAdapter = new BrandRecyclerAdapter(getContext(), dealResponse.getTopBrand());

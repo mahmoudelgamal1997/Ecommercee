@@ -5,24 +5,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
-import com.example.elgaml.ecommerce.utils.BonusInterpolator;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -93,10 +87,10 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
                         public void onChanged(AddToFavourit addToFavourit) {
                             if (!model.getIsFav()){
                                 holder.love.setImageResource(R.drawable.heart_loved);
-                                model.setIsFav(true);
+                            //    model.setIsFav(true);
                             }else {
                                 holder.love.setImageResource(R.drawable.heart_unlove);
-                                model.setIsFav(false);
+                            //    model.setIsFav(false);
 
                             }
                         notifyItemChanged(position);

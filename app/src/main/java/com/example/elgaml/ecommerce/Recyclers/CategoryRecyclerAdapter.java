@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.HomeModel.TopCategory;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

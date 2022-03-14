@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.elgaml.ecommerce.home.Home;
 import com.example.elgaml.ecommerce.auth.login.LoginActivity;
+import com.example.elgaml.ecommerce.model.MyAccountModel.User;
+import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 
 public class MainActivity extends AppCompatActivity {
 

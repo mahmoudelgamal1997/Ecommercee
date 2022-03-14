@@ -26,8 +26,8 @@ import com.example.elgaml.ecommerce.Recyclers.NewArrivalRecyclerAdapter;
 import com.example.elgaml.ecommerce.Recyclers.HotDealsRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
-import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
-import com.example.elgaml.ecommerce.model.HomeModel.HotDeals;
+import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
+import com.example.elgaml.ecommerce.model.HomeModel.HotDeal;
 import com.example.elgaml.ecommerce.model.HomeModel.NewArrival;
 import com.example.elgaml.ecommerce.model.HomeModel.SideMenuCategory;
 import com.example.elgaml.ecommerce.model.HomeModel.TopCategory;
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     String token;
 
     private List<BestSeller> mBestSeller = new ArrayList<>();
-    private List<HotDeals> mHotDeals = new ArrayList<>();
+    private List<HotDeal> mHotDeals = new ArrayList<>();
     private List<NewArrival> mNewArrival = new ArrayList<>();
     private List<SideMenuCategory> mSideMenuCategories = new ArrayList<>();
     private List<TopCategory> mTopCategories = new ArrayList<>();
@@ -112,15 +112,17 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mHotDeals, token, getViewLifecycleOwner(), homeViewModel);
         recyclerView_hotdeals.setAdapter(hotDealsRecyclerAdapter);
 
-        homeViewModel.getHome(token).observe(getViewLifecycleOwner(), new Observer<HomeResponse>() {
+        homeViewModel.getHome(token).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
             @Override
-            public void onChanged(HomeResponse homeResponse) {
+            public void onChanged(HomeTestResponse homeResponse) {
+
+
                 onGetHome(homeResponse);
             }});
     }
 
 
-    void onGetHome(HomeResponse homeResponse) {
+    void onGetHome(HomeTestResponse homeResponse) {
         mBestSeller =  homeResponse.getBestSeller();
         mNewArrival = homeResponse.getNewArrival();
         mSideMenuCategories = homeResponse.getSideMenuCategories();
@@ -168,17 +170,10 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
             //no connection
             showToast("No internet connection", getContext());
         } }
-
-
     void showToast(String msg, Context context) {
         if (toast != null) {
             toast.cancel();
         }
         toast = Toast.makeText((context), msg, Toast.LENGTH_SHORT);
         toast.show();
-    }
-
-
-
-
-}
+    }}

@@ -2,7 +2,7 @@ package com.example.elgaml.ecommerce.home;
 
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
-import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
+import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
 import com.example.elgaml.ecommerce.retrofit.APIinterface;
 import com.example.elgaml.ecommerce.retrofit.RetrofitRequest;
 
@@ -22,9 +22,8 @@ public class HomeRepository {
         apIinterface = RetrofitRequest.cteateService(APIinterface.class);
     }
 
-    public Observable<HomeResponse> getHome(String api_token) {
-
-        return apIinterface.getHome(api_token).subscribeOn(Schedulers.io())
+    public Observable<HomeTestResponse> getHome() {
+        return apIinterface.getHome( ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

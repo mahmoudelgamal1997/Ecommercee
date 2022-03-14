@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,22 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.HotDeals;
-import com.example.elgaml.ecommerce.utils.BonusInterpolator;
+import com.example.elgaml.ecommerce.model.HomeModel.HotDeal;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 
 public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecyclerAdapter.HotDealsViewHolder> {
 
-    private List<HotDeals> list;
+    private List<HotDeal> list;
     private String token;
     private LifecycleOwner owner;
     private Toast toast;
@@ -38,7 +33,7 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
     private Context context;
     private ProjectUtils utils;
 
-    public HotDealsRecyclerAdapter(Context context, List<HotDeals> list, String token, LifecycleOwner lifecycleOwner, HomeViewModel homeViewModel){
+    public HotDealsRecyclerAdapter(Context context, List<HotDeal> list, String token, LifecycleOwner lifecycleOwner, HomeViewModel homeViewModel){
         this.list = list;
         this.token = token;
         this.homeViewModel = homeViewModel;
@@ -63,7 +58,7 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
 
 
         //instace from new Arrival product
-        final HotDeals model=list.get(position);
+        final HotDeal model=list.get(position);
 
         if (model!=null) {
 
@@ -93,10 +88,10 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
                             public void onChanged(AddToFavourit addToFavourit) {
                                 if (!model.getIsFav()) {
                                     holder.love.setImageResource(R.drawable.heart_loved);
-                                    model.setIsFav(true);
+                                  //  model.setIsFav(true);
                                 } else {
                                     holder.love.setImageResource(R.drawable.heart_unlove);
-                                    model.setIsFav(false);
+                                   // model.setIsFav(false);
 
                                 }
                                 notifyDataSetChanged();
@@ -120,11 +115,11 @@ public class HotDealsRecyclerAdapter extends RecyclerView.Adapter<HotDealsRecycl
         return list.size();
     }
 
-    public List<HotDeals> getList() {
+    public List<HotDeal> getList() {
         return list;
     }
 
-    public void setList(List<HotDeals> list) {
+    public void setList(List<HotDeal> list) {
         this.list = list;
     }
 

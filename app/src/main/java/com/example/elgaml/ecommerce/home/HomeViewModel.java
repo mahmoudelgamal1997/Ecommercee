@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
+import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
@@ -28,18 +29,18 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public LiveData<HomeResponse> getHome(String api_token){
-         final MutableLiveData<HomeResponse> mutableLiveData = new MutableLiveData<>();
-       homeRepository.getHome(api_token).subscribe(new Observer<HomeResponse>() {
+    public LiveData<HomeTestResponse> getHome(String api_token){
+       final MutableLiveData<HomeTestResponse> mutableLiveData = new MutableLiveData<>();
+       homeRepository.getHome( ).subscribe(new Observer<HomeTestResponse>() {
            @Override
            public void onSubscribe(Disposable d) {
 
            }
 
            @Override
-           public void onNext(HomeResponse homeModel) {
-
-         mutableLiveData.setValue(homeModel);
+           public void onNext(HomeTestResponse homeModel) {
+                Log.e("HomeTestResponse",homeModel.getNewArrival().toString());
+                mutableLiveData.setValue(homeModel);
            }
 
            @Override

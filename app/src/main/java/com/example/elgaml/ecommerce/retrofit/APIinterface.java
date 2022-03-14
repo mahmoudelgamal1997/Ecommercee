@@ -6,10 +6,10 @@ import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.FavouritModel.FavouritResponse;
 import com.example.elgaml.ecommerce.model.ForgetPasswordModel;
-import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
 import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 import com.example.elgaml.ecommerce.model.SignInModel;
 import com.example.elgaml.ecommerce.model.SignUpModel;
+import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -18,7 +18,6 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -52,7 +51,8 @@ public interface APIinterface {
                                @Query("password") String password);
 
     @GET(GlobalKeys.home)
-    Observable<HomeResponse> getHome(@Query("api_token")String api_token);
+    Observable<HomeTestResponse> getHome( );
+
 
     @FormUrlEncoded
     @POST(GlobalKeys.addFavourit)
@@ -88,7 +88,5 @@ public interface APIinterface {
 
     @DELETE(GlobalKeys.deleteCart+"{cart_id}")
     Single<CartResponse> deleteCart(@Path("cart_id") int cart_id, @Query("api_token") String api_token );
-
-
 
 }

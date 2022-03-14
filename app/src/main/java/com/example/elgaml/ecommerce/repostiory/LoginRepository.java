@@ -15,12 +15,8 @@ import retrofit2.Response;
 
 public class LoginRepository
 {
-
     public static LoginRepository signInRepository;
     private APIinterface apIinterface;
-  //  private LiveData<User> userLiveData;
-  //  private MutableLiveData<User> _user = new MutableLiveData<>();
-
 
     public static LoginRepository getInstance(){
         if (signInRepository == null){
@@ -32,37 +28,24 @@ public class LoginRepository
     public LoginRepository(){
         apIinterface= RetrofitRequest.cteateService(APIinterface.class);
     }
-
-
     public MutableLiveData<User> SignIn(String name, String password){
         final MutableLiveData<User> newsData = new MutableLiveData<>();
         apIinterface.signin(name, password).enqueue(new Callback<SignInModel>() {
             @Override
-            public void onResponse(Call<SignInModel> call,
-                                   Response<SignInModel> response) {
+            public void onResponse(Call<SignInModel> call,Response<SignInModel> response) {
                 if (response.isSuccessful()){
                     newsData.setValue(response.body().getUser());
                     Log.e("Signintoast",response.body().getUser().getName());
                 }else{
                     newsData.setValue(null);
-                }
-
-            }
-
+                }}
             @Override
             public void onFailure(Call<SignInModel> call, Throwable t) {
-              //  newsData.setValue();
-
                 Log.e("errorSignIn",t.getMessage());
             }
         });
         return newsData;
     }
-
-
-
-
-
 
 /*
     public LiveData<User> signIn(String name,String password){
