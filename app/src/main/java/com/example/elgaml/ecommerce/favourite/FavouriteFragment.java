@@ -22,8 +22,7 @@ import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.Recyclers.FavouritRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
-import com.example.elgaml.ecommerce.model.FavouritModel.Datum;
-import com.example.elgaml.ecommerce.model.FavouritModel.FavouritResponse;
+import com.example.elgaml.ecommerce.model.FavouritModel.FavouriteResponseItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -47,8 +46,8 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
     private static final String MY_PREFS_NAME = "UserAuth";
     private String token;
     private RecyclerView recyclerView_favourit;
-    private List<Datum> mfavourit;
-    private List<Datum> mfavouritSeperate;
+    private List<FavouriteResponseItem> mfavourit;
+    private List<FavouriteResponseItem> mfavouritSeperate;
     private FavouritRecyclerAdapter favouritRecyclerAdapter;
     private Toast toast;
     private ProgressBar progressBar;
@@ -99,38 +98,58 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
         favouritRecyclerAdapter= new FavouritRecyclerAdapter(mfavourit,this);
         recyclerView_favourit.setAdapter(favouritRecyclerAdapter);
 
-        favouriteViewModel.getFavourit(token).observe(getViewLifecycleOwner(), new Observer<FavouritResponse>() {
+        favouriteViewModel.getFavourit("a4890fae6ccd7e7c50f514fcd17cb27e").observe(getViewLifecycleOwner(), new Observer<List<FavouriteResponseItem>>() {
             @Override
-            public void onChanged(FavouritResponse favouritResponse) {
-                if(favouritResponse.getData().size()!=0){
+            public void onChanged(List<FavouriteResponseItem> favouritResponse) {
+
+                if(favouritResponse.size()!=0){
                 fav_emputy.setVisibility(View.GONE);
-                mfavourit =favouritResponse.getData();
+                mfavourit =favouritResponse;
                 favouritRecyclerAdapter.setList(mfavourit);
-                favouritRecyclerAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.INVISIBLE);
-            }else {
+
+                onGetResponse(favouritResponse);
+
+                }else {
                 progressBar.setVisibility(View.INVISIBLE);
                 fav_emputy.setVisibility(View.VISIBLE);
                 }
             }
         });
+
+
+    }
+
+    private void onGetResponse(List<FavouriteResponseItem> favouritResponse)
+    {
+    mfavourit=favouritResponse;
+    favouritRecyclerAdapter.setList(mfavourit);
+    favouritRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClickAddCart(final int postion) {
+    Log.e("aaaaaaaa","asdasdasdasd");
+        FavouriteResponseItem model = mfavourit.get(postion);
 
+        favouriteViewModel.add_to_cart("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(model.getId()))
+                .observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+                    @Override
+                    public void onChanged(CartResponse cartResponse) {
+                        Log.e("carttt",cartResponse.getShipping());
+                    }
+                });
         if ( isNetworkAvailable(getContext())) {
             //default
             String quatatiy = "1";
             String size = "1";
             String color = "1";
-            Datum model = mfavourit.get(postion);
-            favouriteViewModel.add_to_cart(token, String.valueOf(model.getId()), quatatiy, size, color).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+            favouriteViewModel.add_to_cart("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(model.getId())).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                 @Override
                 public void onChanged(CartResponse cartResponse) {
 
-                    //remove for favourit
-                    homeViewModel.addFavourit(token, String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
+                    //remove from favourit
+                    homeViewModel.addFavourit("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
                         @Override
                         public void onChanged(AddToFavourit addToFavourit) {
                             mfavouritSeperate=mfavourit;
@@ -167,7 +186,7 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
         });
     }
 
-    void showEmputyText(List<Datum> list){
+    void showEmputyText(List<FavouriteResponseItem> list){
         if (list.size()==0){
             fav_emputy.setVisibility(View.VISIBLE);
         }

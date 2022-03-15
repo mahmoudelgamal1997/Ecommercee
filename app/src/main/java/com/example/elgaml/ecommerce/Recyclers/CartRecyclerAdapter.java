@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
+import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         void onClickChangeQuantity(int postiion,String but_id);
     }
     //constructor
-    public CartRecyclerAdapter(List<Cart> list,Context context,CartRecyclerListner listner) {
+    public CartRecyclerAdapter(List<Cart> list, Context context, CartRecyclerListner listner) {
         this.list = list;
         this.context= context;
         this.listner=listner;
@@ -50,9 +50,9 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
         //instace from new Arrival product
         final Cart model = list.get(position);
-       utils.loadImage(model.getProduct().getDefaultImage(), holder.cart_img);
+       utils.loadImage(model.getProduct().default_image, holder.cart_img);
 
-        holder.item_name.setText(model.getProduct().getNameEn());
+        holder.item_name.setText(model.getProduct().getName_en());
         holder.item_price.setText(model.getProduct().getPrice()+" $");
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/fontawesome.ttf");
         holder.minus_button.setTypeface(font);

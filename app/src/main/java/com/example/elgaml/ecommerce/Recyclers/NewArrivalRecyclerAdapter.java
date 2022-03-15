@@ -1,6 +1,7 @@
 package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +49,10 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
         NewArrival model = list.get(position);
         if (model.getIsFav()) {
             holder.love.setImageResource(R.drawable.heart_loved);
-        } else {
+        } else if (!model.getIsFav()){
             holder.love.setImageResource(R.drawable.heart_unlove);
         }
-
+        Log.e("bbbbbbbbb",model.getId() +"   :"+model.getIsFav());
        // holder.love.setAnimation(makeAnimation());
        utils.loadImage(model.getDefaultImage(), holder.product);
         holder.item_price.setText(String.valueOf(model.getPrice().getPrice() + " $"));

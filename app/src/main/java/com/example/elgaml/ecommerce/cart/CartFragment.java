@@ -48,7 +48,7 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
     View view_cart;
     Button checkout;
     Toast toast;
-    String token;
+    String token="a4890fae6ccd7e7c50f514fcd17cb27e";
     ProgressBar progressBar;
     Observer<CartResponse> observer;
     private RelativeLayout relativeLayout;
@@ -90,7 +90,7 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         cartViewModel.init();
 
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        token = prefs.getString(USER_ID, "");
+       // token = prefs.getString(USER_ID, "");
 
         //hideAllView();
         relativeLayout.setVisibility(View.INVISIBLE);
@@ -160,8 +160,8 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
                             mSeperateList = mList;
 
                             //mList = cartResponse.getCarts();
-                            //cartRecyclerAdapter.setList(mList);
-                            //cartRecyclerAdapter.notifyItemChanged(postiion);
+                            cartRecyclerAdapter.setList(mList);
+                            cartRecyclerAdapter.notifyItemChanged(postiion);
                             bindUI(cartResponse);
                         }
                     }
@@ -202,9 +202,9 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
      */
     void bindUI(CartResponse cartResponse) {
         shipping_number.setText("USD " + cartResponse.getShipping());
-        price_number.setText("USD " + cartResponse.getTotalPrice());
-        number_Items.setText(cartResponse.getTotalItems() + " items");
-        double sum = cartResponse.getTotalPrice() + Integer.parseInt(cartResponse.getShipping());
+        price_number.setText("USD " + cartResponse.getTotal_price());
+        number_Items.setText(cartResponse.getTotal_items() + " items");
+        double sum = cartResponse.getTotal_price() + Integer.parseInt(cartResponse.getShipping());
         total_number.setText("USD " + sum);
     }
 

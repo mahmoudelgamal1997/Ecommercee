@@ -1,93 +1,39 @@
-
 package com.example.elgaml.ecommerce.model.Cart;
 
-import java.util.List;
-
-import com.example.elgaml.ecommerce.model.HomeModel.Brand;
-import com.example.elgaml.ecommerce.model.HomeModel.SubCategory;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Product {
-
-    @Expose
-    private Brand brand;
-    @Expose
-//    private List<Colors> colors;
-    @SerializedName("count_paid")
-    private int countPaid;
-    @SerializedName("default_image")
-    private String defaultImage;
-    @SerializedName("friendly_url")
-    private String friendlyUrl;
-    @Expose
-    private int id;
-    @Expose
-    private List<Image> images;
-    @SerializedName("is_fav")
-    private Boolean isFav;
-    @SerializedName("is_reviewed")
-    private Boolean isReviewed;
-    @SerializedName("name_ar")
-    private String nameAr;
-    @SerializedName("name_en")
-    private String nameEn;
-    @Expose
-    private int price;
-    @Expose
-    private List<Object> reviews;
-//    @Expose
-//    private List<Sizes> sizes;
-//    @Expose
-//    private int stock;
-    @Expose
-    private List<SubCategory> subcategory;
-    @SerializedName("today_offer")
-    private Object todayOffer;
-    @SerializedName("total_rate")
-    private Long totalRate;
-    @Expose
-    private String url;
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-//    public List<Colors> getColors() {
-//        return colors;
-//    }
-//
-//    public void setColors(List<Colors> colors) {
-//        this.colors = colors;
-//    }
-
-    public int getCountPaid() {
-        return countPaid;
-    }
-
-    public void setCountPaid(int countPaid) {
-        this.countPaid = countPaid;
-    }
-
-    public String getDefaultImage() {
-        return defaultImage;
-    }
-
-    public void setDefaultImage(String defaultImage) {
-        this.defaultImage = defaultImage;
-    }
-
-    public String getFriendlyUrl() {
-        return friendlyUrl;
-    }
-
-    public void setFriendlyUrl(String friendlyUrl) {
-        this.friendlyUrl = friendlyUrl;
-    }
+    public int id;
+    public String name_ar;
+    public String name_en;
+    public String description_ar;
+    public String description_en;
+    public int stock;
+    public int status;
+    public String shipping_specification;
+    public int sub_category_id;
+    public String created_at;
+    public String updated_at;
+    public String long_description_ar;
+    public String long_description_en;
+    public int brand_id;
+    public int disable;
+    public int is_outofstock_allowed;
+    public int best_seller;
+    public int hot_deals;
+    public int category_id;
+    public String shipping_specifications_ar;
+    public String ingredients_en;
+    public String ingredients_ar;
+    public Object provider_id;
+    public int activation;
+    public String default_image;
+    public boolean is_fav;
+    public String url;
+    public int count_paid;
+    public int total_rate;
+    public boolean is_reviewed;
+    public Price price;
+    public Object today_offer;
+    public Image image;
 
     public int getId() {
         return id;
@@ -97,100 +43,204 @@ public class Product {
         this.id = id;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public String getName_ar() {
+        return name_ar;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setName_ar(String name_ar) {
+        this.name_ar = name_ar;
     }
 
-    public Boolean getIsFav() {
-        return isFav;
+    public String getName_en() {
+        return name_en;
     }
 
-    public void setIsFav(Boolean isFav) {
-        this.isFav = isFav;
+    public void setName_en(String name_en) {
+        this.name_en = name_en;
     }
 
-    public Boolean getIsReviewed() {
-        return isReviewed;
+    public String getDescription_ar() {
+        return description_ar;
     }
 
-    public void setIsReviewed(Boolean isReviewed) {
-        this.isReviewed = isReviewed;
+    public void setDescription_ar(String description_ar) {
+        this.description_ar = description_ar;
     }
 
-    public String getNameAr() {
-        return nameAr;
+    public String getDescription_en() {
+        return description_en;
     }
 
-    public void setNameAr(String nameAr) {
-        this.nameAr = nameAr;
+    public void setDescription_en(String description_en) {
+        this.description_en = description_en;
     }
 
-    public String getNameEn() {
-        return nameEn;
+    public int getStock() {
+        return stock;
     }
 
-    public void setNameEn(String nameEn) {
-        this.nameEn = nameEn;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public int getPrice() {
-        return price;
+    public int getStatus() {
+        return status;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public List<Object> getReviews() {
-        return reviews;
+    public String getShipping_specification() {
+        return shipping_specification;
     }
 
-    public void setReviews(List<Object> reviews) {
-        this.reviews = reviews;
+    public void setShipping_specification(String shipping_specification) {
+        this.shipping_specification = shipping_specification;
     }
 
-//    public List<Sizes> getSizes() {
-//        return sizes;
-//    }
-
-//    public void setSizes(List<Sizes> sizes) {
-//        this.sizes = sizes;
-//    }
-
-//    public int getStock() {
-//        return stock;
-//    }
-
-//    public void setStock(int stock) {
-//        this.stock = stock;
-//    }
-
-    public List<SubCategory> getSubcategory() {
-        return subcategory;
+    public int getSub_category_id() {
+        return sub_category_id;
     }
 
-    public void setSubcategory(List<SubCategory> subcategory) {
-        this.subcategory = subcategory;
+    public void setSub_category_id(int sub_category_id) {
+        this.sub_category_id = sub_category_id;
     }
 
-    public Object getTodayOffer() {
-        return todayOffer;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setTodayOffer(Object todayOffer) {
-        this.todayOffer = todayOffer;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public Long getTotalRate() {
-        return totalRate;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setTotalRate(Long totalRate) {
-        this.totalRate = totalRate;
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getLong_description_ar() {
+        return long_description_ar;
+    }
+
+    public void setLong_description_ar(String long_description_ar) {
+        this.long_description_ar = long_description_ar;
+    }
+
+    public String getLong_description_en() {
+        return long_description_en;
+    }
+
+    public void setLong_description_en(String long_description_en) {
+        this.long_description_en = long_description_en;
+    }
+
+    public int getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(int brand_id) {
+        this.brand_id = brand_id;
+    }
+
+    public int getDisable() {
+        return disable;
+    }
+
+    public void setDisable(int disable) {
+        this.disable = disable;
+    }
+
+    public int getIs_outofstock_allowed() {
+        return is_outofstock_allowed;
+    }
+
+    public void setIs_outofstock_allowed(int is_outofstock_allowed) {
+        this.is_outofstock_allowed = is_outofstock_allowed;
+    }
+
+    public int getBest_seller() {
+        return best_seller;
+    }
+
+    public void setBest_seller(int best_seller) {
+        this.best_seller = best_seller;
+    }
+
+    public int getHot_deals() {
+        return hot_deals;
+    }
+
+    public void setHot_deals(int hot_deals) {
+        this.hot_deals = hot_deals;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public String getShipping_specifications_ar() {
+        return shipping_specifications_ar;
+    }
+
+    public void setShipping_specifications_ar(String shipping_specifications_ar) {
+        this.shipping_specifications_ar = shipping_specifications_ar;
+    }
+
+    public String getIngredients_en() {
+        return ingredients_en;
+    }
+
+    public void setIngredients_en(String ingredients_en) {
+        this.ingredients_en = ingredients_en;
+    }
+
+    public String getIngredients_ar() {
+        return ingredients_ar;
+    }
+
+    public void setIngredients_ar(String ingredients_ar) {
+        this.ingredients_ar = ingredients_ar;
+    }
+
+    public Object getProvider_id() {
+        return provider_id;
+    }
+
+    public void setProvider_id(Object provider_id) {
+        this.provider_id = provider_id;
+    }
+
+    public int getActivation() {
+        return activation;
+    }
+
+    public void setActivation(int activation) {
+        this.activation = activation;
+    }
+
+    public String getDefault_image() {
+        return default_image;
+    }
+
+    public void setDefault_image(String default_image) {
+        this.default_image = default_image;
+    }
+
+    public boolean isIs_fav() {
+        return is_fav;
+    }
+
+    public void setIs_fav(boolean is_fav) {
+        this.is_fav = is_fav;
     }
 
     public String getUrl() {
@@ -201,4 +251,51 @@ public class Product {
         this.url = url;
     }
 
+    public int getCount_paid() {
+        return count_paid;
+    }
+
+    public void setCount_paid(int count_paid) {
+        this.count_paid = count_paid;
+    }
+
+    public int getTotal_rate() {
+        return total_rate;
+    }
+
+    public void setTotal_rate(int total_rate) {
+        this.total_rate = total_rate;
+    }
+
+    public boolean isIs_reviewed() {
+        return is_reviewed;
+    }
+
+    public void setIs_reviewed(boolean is_reviewed) {
+        this.is_reviewed = is_reviewed;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public Object getToday_offer() {
+        return today_offer;
+    }
+
+    public void setToday_offer(Object today_offer) {
+        this.today_offer = today_offer;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }

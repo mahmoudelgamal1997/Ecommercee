@@ -4,12 +4,14 @@ import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.model.ChangePasswordModel;
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
-import com.example.elgaml.ecommerce.model.FavouritModel.FavouritResponse;
+import com.example.elgaml.ecommerce.model.FavouritModel.FavouriteResponseItem;
 import com.example.elgaml.ecommerce.model.ForgetPasswordModel;
 import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 import com.example.elgaml.ecommerce.model.SignInModel;
 import com.example.elgaml.ecommerce.model.SignUpModel;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -56,22 +58,24 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST(GlobalKeys.addFavourit)
-    Single<AddToFavourit> add_Favourit(@Field("api_token") String api_token,
+    Single<AddToFavourit> add_Favourit(
+            @Query("api_token") String api_token,
+          //  @Field("api_token") String api_token,
                                        @Field("product_id") String product_id);
 
     @GET(GlobalKeys.getDeals)
     Observable<DealResponse> getDeals();
 
     @GET(GlobalKeys.getFavourit)
-    Observable<FavouritResponse> getFavourit(@Query("api_token") String api_token);
+    Observable<List<FavouriteResponseItem>> getFavourit(@Query("api_token") String api_token);
 
     @FormUrlEncoded
     @POST(GlobalKeys.addCart)
     Observable<CartResponse> add_to_cart(@Field("api_token") String api_token,
                                          @Field("product_id") String product_id,
-                                         @Field("quantity") String quantity,
-                                         @Field("size_id") String size_id,
-                                         @Field("color_id") String color_id);
+                                         @Field("quantity") String quantity);
+                                      //   @Field("size_id") String size_id,
+                                       //  @Field("color_id") String color_id);
 
 
     @GET(GlobalKeys.getCart)

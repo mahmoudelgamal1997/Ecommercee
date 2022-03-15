@@ -25,7 +25,7 @@ import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable
 public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRecyclerAdapter.BestSellerViewHolder> {
 
     private List<BestSeller> list;
-    private String token;
+    private String token="a4890fae6ccd7e7c50f514fcd17cb27e";
     private LifecycleOwner owner;
     private Toast toast;
     private ProjectUtils utils;

@@ -1,28 +1,35 @@
-
 package com.example.elgaml.ecommerce.model.Cart;
 
-import java.util.List;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 public class CartResponse {
+    public ArrayList<Cart> carts;
+    public int total_price;
+    public int total_items;
+    public String shipping;
 
-    @Expose
-    private List<Cart> carts;
-    @Expose
-    private String shipping;
-    @SerializedName("total_items")
-    private Long totalItems;
-    @SerializedName("total_price")
-    private Long totalPrice;
-
-    public List<Cart> getCarts() {
+    public ArrayList<Cart> getCarts() {
         return carts;
     }
 
-    public void setCarts(List<Cart> carts) {
+    public void setCarts(ArrayList<Cart> carts) {
         this.carts = carts;
+    }
+
+    public int getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
+    }
+
+    public int getTotal_items() {
+        return total_items;
+    }
+
+    public void setTotal_items(int total_items) {
+        this.total_items = total_items;
     }
 
     public String getShipping() {
@@ -32,21 +39,5 @@ public class CartResponse {
     public void setShipping(String shipping) {
         this.shipping = shipping;
     }
-
-    public Long getTotalItems() {
-        return totalItems;
-    }
-
-    public void setTotalItems(Long totalItems) {
-        this.totalItems = totalItems;
-    }
-
-    public Long getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
 }
+

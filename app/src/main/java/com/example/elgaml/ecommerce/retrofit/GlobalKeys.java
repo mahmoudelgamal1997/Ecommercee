@@ -15,6 +15,4 @@ public class GlobalKeys {
     public static final String sendResetPasswordCode = "v1/user/auth/send-reset-password-code";
     public static final String newPassword = "v1/user/auth/reset-password";
     public static final String getDeals = "v1/user/app/deals-page";
-
-
 }

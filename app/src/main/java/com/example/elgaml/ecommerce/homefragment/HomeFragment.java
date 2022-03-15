@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     HotDealsRecyclerAdapter hotDealsRecyclerAdapter;
 
     Toast toast;
-    String token;
+    String token="a4890fae6ccd7e7c50f514fcd17cb27e";
 
     private List<BestSeller> mBestSeller = new ArrayList<>();
     private List<HotDeal> mHotDeals = new ArrayList<>();
@@ -72,11 +72,11 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar=(Toolbar)getActivity().findViewById(R.id.toolbar_base);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_base);
 
         toolbar.setTitleMarginStart(40);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
 
 
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
 
         seemore_hotdeals = (TextView) view.findViewById(R.id.seemore_hot_deals);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        token = prefs.getString(mUSER_ID, "");
+       // token = prefs.getString(mUSER_ID, "");
 
         recyclerView_new_arrival = (RecyclerView) view.findViewById(R.id.newarrival_recycler);
         recyclerView_new_arrival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -95,10 +95,10 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         recyclerView_category = (RecyclerView) view.findViewById(R.id.top_categories_recycler);
         recyclerView_category.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-       // recyclerView_hotdeals = (RecyclerView) view.findViewById(R.id.hot_deals_recycler);
-       // recyclerView_hotdeals.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        // recyclerView_hotdeals = (RecyclerView) view.findViewById(R.id.hot_deals_recycler);
+        // recyclerView_hotdeals.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival , HomeFragment.this);
+        arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival, HomeFragment.this);
         recyclerView_new_arrival.setAdapter(arrivalAdapter);
 
         bestSellerRecyclerAdapter = new BestSellerRecyclerAdapter(getContext(), mBestSeller, token, getViewLifecycleOwner(), homeViewModel);
@@ -107,25 +107,21 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         categoryRecyclerAdapter = new CategoryRecyclerAdapter(mTopCategories);
         recyclerView_category.setAdapter(categoryRecyclerAdapter);
 
-      //  hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mTopCategories, token, getViewLifecycleOwner(), homeViewModel);
-      //  recyclerView_hotdeals.setAdapter(categoryRecyclerAdapter);
+        //  hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mTopCategories, token, getViewLifecycleOwner(), homeViewModel);
+        //  recyclerView_hotdeals.setAdapter(categoryRecyclerAdapter);
 
         homeViewModel.getHome(token).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
             @Override
             public void onChanged(HomeTestResponse homeResponse) {
-
-
                 onGetHome(homeResponse);
-            }});
+            }
+        });
     }
-
-
     void onGetHome(HomeTestResponse homeResponse) {
         mBestSeller =  homeResponse.getBestSeller();
         mNewArrival = homeResponse.getNewArrival();
         mSideMenuCategories = homeResponse.getSideMenuCategories();
         mTopCategories = homeResponse.getTopCategories();
-
         mHotDeals = homeResponse.getHotDeals();
            
         arrivalAdapter.setList(mNewArrival);

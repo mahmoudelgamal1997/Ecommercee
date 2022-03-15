@@ -1,33 +1,13 @@
-
 package com.example.elgaml.ecommerce.model.Cart;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Cart {
-
-    @SerializedName("created_at")
-    private String createdAt;
-    @Expose
     private int id;
-    @Expose
+    public int user_id;
+    public int product_id;
+    public int quantity;
+    public String created_at;
+    public String updated_at;
     private Product product;
-    @SerializedName("product_id")
-    private int productId;
-    @Expose
-    private int quantity;
-    @SerializedName("updated_at")
-    private String updatedAt;
-    @SerializedName("user_id")
-    private int userId;
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public int getId() {
         return id;
@@ -37,20 +17,20 @@ public class Cart {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public int getQuantity() {
@@ -61,20 +41,27 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

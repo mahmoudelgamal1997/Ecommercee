@@ -54,6 +54,8 @@ public class HomeViewModel extends ViewModel {
     }
 
     public LiveData<AddToFavourit> addFavourit(String api_token, String product_id) {
+       Log.e("vvvvv",api_token);
+       Log.e("vvvvv",product_id);
         final MutableLiveData<AddToFavourit> mutableLiveData = new MutableLiveData<>();
 
         homeRepository.addFavourit(api_token,product_id).subscribe(new SingleObserver<AddToFavourit>() {

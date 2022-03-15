@@ -58,8 +58,6 @@
                     android:textSize="14dp"
                     android:textStyle="bold"
                     android:visibility="gone" />
-
-
                 <TextView
                     android:id="@+id/top_categories"
                     android:layout_width="wrap_content"
@@ -87,8 +85,6 @@
                     android:textSize="14dp"
 
                     />
-
-
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -149,7 +145,6 @@
                     android:textStyle="bold"
 
                     />
-
                 <TextView
                     android:id="@+id/seemore_brand"
                     android:layout_width="wrap_content"
@@ -186,11 +181,6 @@
                     android:layout_below="@id/brand_recycler">
                 </RelativeLayout>
             </RelativeLayout>
-
-
         </RelativeLayout>
-
-
     </ScrollView>
-
 </FrameLayout>
