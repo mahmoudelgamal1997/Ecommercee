@@ -82,9 +82,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         homeViewModel.init();
 
-        hot_deals = (TextView) view.findViewById(R.id.hot_deals);
         seemore_hotdeals = (TextView) view.findViewById(R.id.seemore_hot_deals);
-        next_img = (ImageView) view.findViewById(R.id.next_sign);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         token = prefs.getString(mUSER_ID, "");
 
@@ -97,8 +95,8 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         recyclerView_category = (RecyclerView) view.findViewById(R.id.top_categories_recycler);
         recyclerView_category.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        recyclerView_hotdeals = (RecyclerView) view.findViewById(R.id.hot_deals_recycler);
-        recyclerView_hotdeals.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+       // recyclerView_hotdeals = (RecyclerView) view.findViewById(R.id.hot_deals_recycler);
+       // recyclerView_hotdeals.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival , HomeFragment.this);
         recyclerView_new_arrival.setAdapter(arrivalAdapter);
@@ -109,8 +107,8 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         categoryRecyclerAdapter = new CategoryRecyclerAdapter(mTopCategories);
         recyclerView_category.setAdapter(categoryRecyclerAdapter);
 
-        hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mHotDeals, token, getViewLifecycleOwner(), homeViewModel);
-        recyclerView_hotdeals.setAdapter(hotDealsRecyclerAdapter);
+      //  hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mTopCategories, token, getViewLifecycleOwner(), homeViewModel);
+      //  recyclerView_hotdeals.setAdapter(categoryRecyclerAdapter);
 
         homeViewModel.getHome(token).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
             @Override
@@ -129,9 +127,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         mTopCategories = homeResponse.getTopCategories();
 
         mHotDeals = homeResponse.getHotDeals();
-            if (mHotDeals.size() == 0){
-                recyclerView_hotdeals.setVisibility(View.GONE);
-            }
+           
         arrivalAdapter.setList(mNewArrival);
         arrivalAdapter.notifyDataSetChanged();
 

@@ -73,7 +73,7 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
         }
 
          */
-        holder.item_price.setText(model.getPrice()+" $");
+        holder.item_price.setText(model.getPrice().getPrice()+" $");
         holder.item_category.setText(String.valueOf(model.getNameEn()));
         holder.love.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +87,10 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
                         public void onChanged(AddToFavourit addToFavourit) {
                             if (!model.getIsFav()){
                                 holder.love.setImageResource(R.drawable.heart_loved);
-                            //    model.setIsFav(true);
+                                model.setIsFav(true);
                             }else {
                                 holder.love.setImageResource(R.drawable.heart_unlove);
-                            //    model.setIsFav(false);
+                                model.setIsFav(false);
 
                             }
                         notifyItemChanged(position);

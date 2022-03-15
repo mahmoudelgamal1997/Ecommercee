@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
-import com.example.elgaml.ecommerce.model.HomeModel.HomeResponse;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
 
 import io.reactivex.Observer;
@@ -27,8 +26,6 @@ public class HomeViewModel extends ViewModel {
             disposable = new CompositeDisposable();
         }
     }
-
-
     public LiveData<HomeTestResponse> getHome(String api_token){
        final MutableLiveData<HomeTestResponse> mutableLiveData = new MutableLiveData<>();
        homeRepository.getHome( ).subscribe(new Observer<HomeTestResponse>() {

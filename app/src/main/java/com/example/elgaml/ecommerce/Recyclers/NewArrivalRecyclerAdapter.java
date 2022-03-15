@@ -54,40 +54,28 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
 
        // holder.love.setAnimation(makeAnimation());
        utils.loadImage(model.getDefaultImage(), holder.product);
-        holder.item_price.setText(String.valueOf(model.getPrice() + " $"));
+        holder.item_price.setText(String.valueOf(model.getPrice().getPrice() + " $"));
         holder.item_category.setText(String.valueOf(model.getNameEn()));
         holder.love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
+              //  holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                 listiner.onClickFav(position);
             }
         });
-
-
     }
-
     @Override
     public int getItemCount() {
         //to return all images
         //if zero it won't appeat any thing
         return list.size();
     }
-
-
-
       public List<NewArrival> getList() {
-
           return list;
-
       }
-
       public void setList(List<NewArrival> list) {
-        
           this.list = list;
-          
       }
-      
 
       //holder_class
     class NewArrivalHolder extends RecyclerView.ViewHolder {

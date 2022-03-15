@@ -36,7 +36,6 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         //instace from new Arrival product
         final TopCategory model=list.get(position);
        utils.loadImage(model.getImage(),holder.category_image);
-        Log.e("img",model.getImage());
         holder.category_name.setText(String.valueOf(model.getNameEn()));
     }
     @Override

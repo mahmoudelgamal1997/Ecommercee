@@ -3,7 +3,7 @@ package com.example.elgaml.ecommerce.model.DealModel;
 
 import java.util.List;
 
-import com.example.elgaml.ecommerce.model.HomeModel.HotDeals;
+import com.example.elgaml.ecommerce.model.HomeModel.HotDeal;
 import com.example.elgaml.ecommerce.model.HomeModel.TopCategory;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,7 +13,7 @@ public class DealResponse {
     @SerializedName("ads")
     private List<Ad> mAds;
     @SerializedName("hot_deals")
-    private List<HotDeals> mHotDeals;
+    private List<HotDeal> mHotDeals;
     @SerializedName("top_brand")
     private List<TopBrand> mTopBrand;
     @SerializedName("top_categories")
@@ -27,11 +27,11 @@ public class DealResponse {
         mAds = ads;
     }
 
-    public List<HotDeals> getHotDeals() {
+    public List<HotDeal> getHotDeals() {
         return mHotDeals;
     }
 
-    public void setHotDeals(List<HotDeals> hotDeals) {
+    public void setHotDeals(List<HotDeal> hotDeals) {
         mHotDeals = hotDeals;
     }
 

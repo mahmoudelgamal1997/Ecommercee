@@ -141,53 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_below="@+id/top_categories"
-                    android:scrollbars="horizontal"></androidx.recyclerview.widget.RecyclerView>
-
-
-                <TextView
-                    android:id="@+id/hot_deals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/top_categories_recycler"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="40dp"
-                    android:text="HOT DEAL"
-                    android:textColor="#000"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/seemore_hot_deals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/top_categories_recycler"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="30dp"
-                    android:text="See more "
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-
-                    />
-
-                <ImageView
-                    android:id="@+id/next_sign"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_below="@+id/top_categories_recycler"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="42dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/next"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/hot_deals_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_below="@+id/top_categories_recycler"
-                    android:scrollbars="horizontal"></androidx.recyclerview.widget.RecyclerView>
-
+                    android:scrollbars="horizontal">
+                </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

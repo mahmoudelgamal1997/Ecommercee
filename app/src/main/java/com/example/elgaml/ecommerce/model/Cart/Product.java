@@ -4,7 +4,7 @@ package com.example.elgaml.ecommerce.model.Cart;
 import java.util.List;
 
 import com.example.elgaml.ecommerce.model.HomeModel.Brand;
-import com.example.elgaml.ecommerce.model.HomeModel.Subcategory;
+import com.example.elgaml.ecommerce.model.HomeModel.SubCategory;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -41,7 +41,7 @@ public class Product {
 //    @Expose
 //    private int stock;
     @Expose
-    private List<Subcategory> subcategory;
+    private List<SubCategory> subcategory;
     @SerializedName("today_offer")
     private Object todayOffer;
     @SerializedName("total_rate")
@@ -169,11 +169,11 @@ public class Product {
 //        this.stock = stock;
 //    }
 
-    public List<Subcategory> getSubcategory() {
+    public List<SubCategory> getSubcategory() {
         return subcategory;
     }
 
-    public void setSubcategory(List<Subcategory> subcategory) {
+    public void setSubcategory(List<SubCategory> subcategory) {
         this.subcategory = subcategory;
     }
 

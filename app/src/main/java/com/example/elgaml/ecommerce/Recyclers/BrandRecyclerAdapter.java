@@ -47,7 +47,6 @@ public class BrandRecyclerAdapter  extends RecyclerView.Adapter<BrandRecyclerAda
         final TopBrand model = list.get(position);
 
         utils.loadImage(model.getImage(), holder.brand_image);
-        Log.e("img", model.getImage());
     }
 
     @Override

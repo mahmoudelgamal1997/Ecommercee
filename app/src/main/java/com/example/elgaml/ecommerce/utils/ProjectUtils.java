@@ -52,8 +52,6 @@ public class ProjectUtils {
         toast.show();
     }
 
-
-
     public void loadImage(String url, ImageView img) {
         Picasso.get().load("http://e-commerce-dev.intcore.net/" + url).placeholder(R.drawable.refresh).into(img);
     }

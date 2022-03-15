@@ -26,8 +26,12 @@ import com.example.elgaml.ecommerce.Recyclers.CategoryRecyclerAdapter;
 import com.example.elgaml.ecommerce.Recyclers.HotDealsRecyclerAdapter;
 import com.example.elgaml.ecommerce.Recyclers.ViewPagerAdapter;
 import com.example.elgaml.ecommerce.model.DealModel.DealResponse;
+import com.example.elgaml.ecommerce.model.HomeModel.HotDeal;
 
 import static android.content.Context.MODE_PRIVATE;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DealsFragment extends Fragment {
@@ -36,10 +40,10 @@ public class DealsFragment extends Fragment {
     SharedPreferences prefs;
     private static final String MY_PREFS_NAME ="UserAuth" ;
     String USER_ID="UserId";
-    HomeViewModel homeViewModel;
     TextView hot_txt,seemore_hot_txt;
     ImageView next_hot_deals;
     DealsViewModel dealsViewModel;
+    List<HotDeal> hotDealList = new ArrayList<>();
     public DealsFragment() {
         // Required empty public constructor
     }
@@ -81,40 +85,35 @@ public class DealsFragment extends Fragment {
         brand_recycler=(RecyclerView)view.findViewById(R.id.brand_recycler);
         brand_recycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
 
-
-
-        homeViewModel=new HomeViewModel();
-
+      //  dealsViewModel1 =new DealsViewModel();
         dealsViewModel = new DealsViewModel();
         dealsViewModel.init();
-
-
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String  token = prefs.getString(USER_ID, "");
-
-
         dealsViewModel.getDeals().observe(getViewLifecycleOwner(), new Observer<DealResponse>() {
             @Override
             public void onChanged(DealResponse dealResponse) {
             ViewPagerAdapter viewPagerAdapter= new ViewPagerAdapter(getContext(),dealResponse.getAds());
             viewPager.setAdapter(viewPagerAdapter);
-
-
             if (dealResponse.getHotDeals().size()!=0) {
                 next_hot_deals.setVisibility(View.VISIBLE);
                 hot_txt.setVisibility(View.VISIBLE);
                 seemore_hot_txt.setVisibility(View.VISIBLE);
-            //    HotDealsRecyclerAdapter hotDealsRecyclerView = new HotDealsRecyclerAdapter(getContext(), dealResponse.getHotDeals(), token, getViewLifecycleOwner(), homeViewModel);
-            //    hot_deals_recycler.setAdapter(hotDealsRecyclerView);
+
             }
+                hotDealList = dealResponse.getHotDeals();
+                HotDealsRecyclerAdapter hotDealsRecyclerView = new HotDealsRecyclerAdapter(getContext(),hotDealList, token, getViewLifecycleOwner(), dealsViewModel);
+                hotDealsRecyclerView.setList(hotDealList);
+                hot_deals_recycler.setAdapter(hotDealsRecyclerView);
 
-//                CategoryRecyclerAdapter categoryRecyclerAdapter = new CategoryRecyclerAdapter(dealResponse.getTopCategories());
-//                recyclerView_category.setAdapter(categoryRecyclerAdapter);
-
+                CategoryRecyclerAdapter categoryRecyclerAdapter = new CategoryRecyclerAdapter(dealResponse.getTopCategories());
+                recyclerView_category.setAdapter(categoryRecyclerAdapter);
 
                 BrandRecyclerAdapter brandRecyclerAdapter = new BrandRecyclerAdapter(getContext(), dealResponse.getTopBrand());
-        brand_recycler.setAdapter(brandRecyclerAdapter);
-
+                brand_recycler.setAdapter(brandRecyclerAdapter);
             }});
-    }
-}
+
+
+
+
+    }}
