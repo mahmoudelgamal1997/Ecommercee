@@ -3,6 +3,7 @@ package com.example.elgaml.ecommerce.homefragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ import com.example.elgaml.ecommerce.model.HomeModel.HotDeal;
 import com.example.elgaml.ecommerce.model.HomeModel.NewArrival;
 import com.example.elgaml.ecommerce.model.HomeModel.SideMenuCategory;
 import com.example.elgaml.ecommerce.model.HomeModel.TopCategory;
+import com.example.elgaml.ecommerce.model.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,8 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     RecyclerView recyclerView_new_arrival, recyclerView_best_seller, recyclerView_category, recyclerView_hotdeals;
     HomeViewModel homeViewModel;
     String mUSER_ID = "UserId";
+    String mUSER_Data ="UserData";
+    User user;
     SharedPreferences prefs;
     private static final String MY_PREFS_NAME = "UserAuth";
     TextView hot_deals, seemore_hotdeals;
@@ -52,15 +57,13 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     BestSellerRecyclerAdapter bestSellerRecyclerAdapter;
     CategoryRecyclerAdapter categoryRecyclerAdapter;
     HotDealsRecyclerAdapter hotDealsRecyclerAdapter;
-
     Toast toast;
-    String token="a4890fae6ccd7e7c50f514fcd17cb27e";
-
     private List<BestSeller> mBestSeller = new ArrayList<>();
     private List<HotDeal> mHotDeals = new ArrayList<>();
     private List<NewArrival> mNewArrival = new ArrayList<>();
     private List<SideMenuCategory> mSideMenuCategories = new ArrayList<>();
     private List<TopCategory> mTopCategories = new ArrayList<>();
+    private String userData;
 
     @Nullable
     @Override
@@ -84,7 +87,10 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
 
         seemore_hotdeals = (TextView) view.findViewById(R.id.seemore_hot_deals);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-       // token = prefs.getString(mUSER_ID, "");
+        Gson gson=new Gson();
+        userData = prefs.getString(mUSER_Data, "");
+        user = gson.fromJson(userData,User.class);
+
 
         recyclerView_new_arrival = (RecyclerView) view.findViewById(R.id.newarrival_recycler);
         recyclerView_new_arrival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -101,7 +107,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), mNewArrival, HomeFragment.this);
         recyclerView_new_arrival.setAdapter(arrivalAdapter);
 
-        bestSellerRecyclerAdapter = new BestSellerRecyclerAdapter(getContext(), mBestSeller, token, getViewLifecycleOwner(), homeViewModel);
+        bestSellerRecyclerAdapter = new BestSellerRecyclerAdapter(getContext(), mBestSeller, user.getApiToken(), getViewLifecycleOwner(), homeViewModel);
         recyclerView_best_seller.setAdapter(bestSellerRecyclerAdapter);
 
         categoryRecyclerAdapter = new CategoryRecyclerAdapter(mTopCategories);
@@ -110,7 +116,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         //  hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mTopCategories, token, getViewLifecycleOwner(), homeViewModel);
         //  recyclerView_hotdeals.setAdapter(categoryRecyclerAdapter);
 
-        homeViewModel.getHome(token).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
+        homeViewModel.getHome(user.getApiToken()).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
             @Override
             public void onChanged(HomeTestResponse homeResponse) {
                 onGetHome(homeResponse);
@@ -154,7 +160,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
 
             arrivalAdapter.notifyItemChanged(position);
             //send to data base
-            homeViewModel.addFavourit(token, String.valueOf(model.getId())).observe(this, new Observer<AddToFavourit>() {
+            homeViewModel.addFavourit(user.getApiToken(), String.valueOf(model.getId())).observe(this, new Observer<AddToFavourit>() {
                 @Override
                 public void onChanged(AddToFavourit addToFavourit) { }});
 

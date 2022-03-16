@@ -14,6 +14,7 @@ import com.example.elgaml.ecommerce.home.Home;
 import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;
 import com.example.elgaml.ecommerce.repostiory.SignUpRepository;
+import com.google.gson.Gson;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -81,6 +82,15 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public SharedPreferences.Editor editorSaveUserImage(String MY_PREFS_NAME, Context context, String key, String value){
+
+        SharedPreferences.Editor editor=getsSharedPreferences(MY_PREFS_NAME, context).edit();
+        editor.putString(key, value); // Storing boolean
+        editor.apply();
+        return editor;
+
+    }
+
+    public SharedPreferences.Editor editorSaveUserData(String MY_PREFS_NAME, Context context, String key, String value){
 
         SharedPreferences.Editor editor=getsSharedPreferences(MY_PREFS_NAME, context).edit();
         editor.putString(key, value); // Storing boolean

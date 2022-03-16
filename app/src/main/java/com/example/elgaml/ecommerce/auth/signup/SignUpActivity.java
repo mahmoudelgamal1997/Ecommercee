@@ -19,6 +19,7 @@ import com.example.elgaml.ecommerce.model.Error;
 import com.example.elgaml.ecommerce.model.SignUpErrorModel;
 import com.example.elgaml.ecommerce.model.User;
 import com.example.elgaml.ecommerce.repostiory.SignUpRepository;
+import com.google.gson.Gson;
 
 import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
@@ -36,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity  {
     String mUSER_NAME = "UserName";
     String mUSER_EMAIL ="UserEmail";
     String mUSER_IMG ="UserImage";
+    String mUSER_Data ="UserData";
     private static final String MY_PREFS_NAME ="UserAuth" ;
     private ProgressBar progressBar;
 
@@ -124,9 +126,11 @@ public class SignUpActivity extends AppCompatActivity  {
                         @Override
                         public void onChanged(User user) {
                             if (user!=null) {
-                                Log.e("SignUP", user.getId().toString());
                                 progressBar.setVisibility(View.VISIBLE);
                                 // Storing boolean
+                                Gson gson=new Gson();
+                                String json=gson.toJson(user);
+                                signUpViewModel.editorSaveUserData(MY_PREFS_NAME,SignUpActivity.this,mUSER_Data,json);
                                 signUpViewModel.editorSaveUser(MY_PREFS_NAME, SignUpActivity.this, "isExist", true);
                                 signUpViewModel.editorSaveUserID(MY_PREFS_NAME , SignUpActivity.this, mUSER_ID,user.getApiToken());
                                 signUpViewModel.editorSaveUserName(MY_PREFS_NAME,SignUpActivity.this, mUSER_NAME,user.getName());
@@ -173,7 +177,6 @@ public class SignUpActivity extends AppCompatActivity  {
                     }
 
                 }else {
-
                 showToast("Internet disconnect");
                 }
             }});

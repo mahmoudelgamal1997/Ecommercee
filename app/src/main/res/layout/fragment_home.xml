@@ -50,12 +50,21 @@
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/next" />
 
+
+                <ProgressBar
+                    android:id="@+id/progress_home"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="80dp"
+                    />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/newarrival_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_below="@+id/newarrival"
-                    android:scrollbars="horizontal"></androidx.recyclerview.widget.RecyclerView>
+                    android:scrollbars="horizontal">
+                </androidx.recyclerview.widget.RecyclerView>
 
 
                 <TextView

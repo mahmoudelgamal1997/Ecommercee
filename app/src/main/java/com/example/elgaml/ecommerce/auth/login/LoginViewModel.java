@@ -1,6 +1,10 @@
 package com.example.elgaml.ecommerce.auth.login;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import androidx.lifecycle.LiveData;
@@ -33,6 +37,20 @@ public class LoginViewModel extends ViewModel {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         view .getContext().startActivity(intent);
+    }
+
+    public SharedPreferences getsSharedPreferences(String MY_PREFS_NAME, Context context){
+        SharedPreferences  pref =context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        return pref;
+    }
+
+    public SharedPreferences.Editor editorSaveUserData(String MY_PREFS_NAME, Context context, String key, String value){
+
+        SharedPreferences.Editor editor=getsSharedPreferences(MY_PREFS_NAME, context).edit();
+        editor.putString(key, value);
+        editor.apply();
+        return editor;
+
     }
 
 }

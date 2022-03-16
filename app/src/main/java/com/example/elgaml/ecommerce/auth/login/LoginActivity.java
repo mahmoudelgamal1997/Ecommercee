@@ -18,6 +18,7 @@ import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.auth.forgetpass.ForgetPassword;
 import com.example.elgaml.ecommerce.auth.signup.SignUpActivity;
 import com.example.elgaml.ecommerce.model.User;
+import com.google.gson.Gson;
 
 import static com.example.elgaml.ecommerce.utils.ProjectUtils.isNetworkAvailable;
 import static com.example.elgaml.ecommerce.utils.Validation.isValidEmail;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity  {
     String USER_NAME= "UserName";
     String USER_EMAIL="UserEmail";
     String USER_IMG="UserImage";
+    String mUSER_Data ="UserData";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +75,11 @@ public class LoginActivity extends AppCompatActivity  {
                             loginViewModel.signIn(name, password).observe(LoginActivity.this, new Observer<User>() {
                                 @Override
                                 public void onChanged(User user) {
-                                    Log.e("LoginInfo", "Success");
                                     if (user != null) {
                                         //save state as login
+                                        Gson gson=new Gson();
+                                        String json=gson.toJson(user);
+                                        editor.putString(mUSER_Data,json);
                                         editor.putBoolean("isExist", true); // Storing boolean
                                         editor.putString(USER_ID,user.getApiToken());
                                         editor.putString(USER_NAME,user.getName());

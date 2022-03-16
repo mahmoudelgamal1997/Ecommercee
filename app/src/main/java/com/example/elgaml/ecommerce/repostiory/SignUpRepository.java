@@ -45,7 +45,6 @@ public class SignUpRepository  {
                                    Response<SignUpModel> response) {
                 if (response.isSuccessful()){
                     userData.setValue(response.body().getUser());
-                    Log.e("SignUP",response.body().getUser().getEmail().toString());
                     error_signup.setValue(null);
                 } else {
 

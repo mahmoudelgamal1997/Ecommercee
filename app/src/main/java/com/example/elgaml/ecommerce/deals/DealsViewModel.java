@@ -67,7 +67,6 @@ public class DealsViewModel extends ViewModel {
             @Override
             public void onSuccess(AddToFavourit addToFavourit) {
                 mutableLiveData.setValue(addToFavourit);
-                Log.e("doneee", addToFavourit.getMessage());
             }
 
             @Override

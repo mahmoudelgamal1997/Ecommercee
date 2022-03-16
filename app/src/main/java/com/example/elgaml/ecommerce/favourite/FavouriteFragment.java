@@ -23,7 +23,9 @@ import com.example.elgaml.ecommerce.Recyclers.FavouritRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.FavouritModel.FavouriteResponseItem;
+import com.example.elgaml.ecommerce.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +44,19 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
     private FavouriteViewModel favouriteViewModel;
     private HomeViewModel      homeViewModel;
     private String mUSER_ID = "UserId";
+    private String mUSER_Data ="UserData";
+    private User user;
     private SharedPreferences prefs;
     private static final String MY_PREFS_NAME = "UserAuth";
-    private String token;
     private RecyclerView recyclerView_favourit;
     private List<FavouriteResponseItem> mfavourit;
     private List<FavouriteResponseItem> mfavouritSeperate;
     private FavouritRecyclerAdapter favouritRecyclerAdapter;
     private Toast toast;
+    private String userData;
     private ProgressBar progressBar;
     private BottomNavigationView navBar;
     private TextView fav_emputy;
-
     public static FavouriteFragment favouriteFragment;
     public FavouriteFragment() {
         // Required empty public constructor
@@ -86,11 +89,12 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
         homeViewModel= new HomeViewModel();
         homeViewModel.init();
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        token = prefs.getString(mUSER_ID, "");
+        Gson gson=new Gson();
+        userData = prefs.getString(mUSER_Data, "");
+        user = gson.fromJson(userData, User.class);
         mfavourit = new ArrayList<>();
         mfavouritSeperate = new ArrayList<>();
 
-        Log.e("Token",token);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView_favourit = (RecyclerView) view.findViewById(R.id.favourit_recycler);
         recyclerView_favourit.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -98,7 +102,7 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
         favouritRecyclerAdapter= new FavouritRecyclerAdapter(mfavourit,this);
         recyclerView_favourit.setAdapter(favouritRecyclerAdapter);
 
-        favouriteViewModel.getFavourit("a4890fae6ccd7e7c50f514fcd17cb27e").observe(getViewLifecycleOwner(), new Observer<List<FavouriteResponseItem>>() {
+        favouriteViewModel.getFavourit(user.getApiToken()).observe(getViewLifecycleOwner(), new Observer<List<FavouriteResponseItem>>() {
             @Override
             public void onChanged(List<FavouriteResponseItem> favouritResponse) {
 
@@ -106,10 +110,7 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
                 fav_emputy.setVisibility(View.GONE);
                 mfavourit =favouritResponse;
                 favouritRecyclerAdapter.setList(mfavourit);
-                progressBar.setVisibility(View.INVISIBLE);
-
                 onGetResponse(favouritResponse);
-
                 }else {
                 progressBar.setVisibility(View.INVISIBLE);
                 fav_emputy.setVisibility(View.VISIBLE);
@@ -122,21 +123,20 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
 
     private void onGetResponse(List<FavouriteResponseItem> favouritResponse)
     {
-    mfavourit=favouritResponse;
+    progressBar.setVisibility(View.INVISIBLE);
+    mfavourit = favouritResponse;
     favouritRecyclerAdapter.setList(mfavourit);
     favouritRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClickAddCart(final int postion) {
-    Log.e("aaaaaaaa","asdasdasdasd");
         FavouriteResponseItem model = mfavourit.get(postion);
 
-        favouriteViewModel.add_to_cart("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(model.getId()))
+        favouriteViewModel.add_to_cart(user.getApiToken(), String.valueOf(model.getId()))
                 .observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                     @Override
                     public void onChanged(CartResponse cartResponse) {
-                        Log.e("carttt",cartResponse.getShipping());
                     }
                 });
         if ( isNetworkAvailable(getContext())) {
@@ -144,12 +144,12 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
             String quatatiy = "1";
             String size = "1";
             String color = "1";
-            favouriteViewModel.add_to_cart("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(model.getId())).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+            favouriteViewModel.add_to_cart(user.getApiToken(), String.valueOf(model.getId())).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                 @Override
                 public void onChanged(CartResponse cartResponse) {
 
                     //remove from favourit
-                    homeViewModel.addFavourit("a4890fae6ccd7e7c50f514fcd17cb27e", String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
+                    homeViewModel.addFavourit(user.getApiToken(), String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
                         @Override
                         public void onChanged(AddToFavourit addToFavourit) {
                             mfavouritSeperate=mfavourit;
@@ -172,7 +172,7 @@ public class FavouriteFragment extends Fragment implements FavouritRecyclerAdapt
     public void onClickDelet(final int postion) {
 
         //remove for favourit
-        homeViewModel.addFavourit(token, String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
+        homeViewModel.addFavourit(user.getApiToken(), String.valueOf(mfavourit.get(postion).getId())).observe(getViewLifecycleOwner(), new Observer<AddToFavourit>() {
             @Override
             public void onChanged(AddToFavourit addToFavourit) {
                 mfavouritSeperate=mfavourit;

@@ -54,7 +54,6 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
         } else if (!model.getIsFav()){
             holder.love.setImageResource(R.drawable.heart_unlove);
         }
-        Log.e("bbbbbbbbb",model.getId() +"   :"+model.getIsFav());
        // holder.love.setAnimation(makeAnimation());
        utils.loadImage(model.getDefaultImage(), holder.product);
         holder.item_price.setText(String.valueOf(model.getPrice().getPrice() + " $"));
@@ -103,7 +102,7 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
             item_price = (TextView) itemView.findViewById(R.id.item_price);
 
 
-            love.setAnimation(utils.makeAnimation(itemView.getContext()));
+         //   love.setAnimation(utils.makeAnimation(itemView.getContext()));
         }
 
 

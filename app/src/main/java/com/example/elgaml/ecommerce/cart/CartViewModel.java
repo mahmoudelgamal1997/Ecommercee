@@ -31,7 +31,6 @@ public class CartViewModel extends ViewModel {
             @Override
             public void onSuccess(CartResponse cartResponse) {
                 mutableLiveData.setValue(cartResponse);
-                Log.e("cartResponse",cartResponse.getShipping());
             }
             @Override
             public void onError(Throwable e) {

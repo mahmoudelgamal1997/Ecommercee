@@ -40,7 +40,6 @@ public class SingleProduct extends AppCompatActivity {
 
         Intent intent=getIntent();
         int id = (int) intent.getLongExtra("ProductID",664);
-        Log.e("idddd", String.valueOf(id));
         APIinterface apIinterface= RetrofitRequest.cteateService(APIinterface.class);
         ProductRepository repository=new ProductRepository(apIinterface);
         ProductViewModel viewModel = new ProductViewModel(repository,this);

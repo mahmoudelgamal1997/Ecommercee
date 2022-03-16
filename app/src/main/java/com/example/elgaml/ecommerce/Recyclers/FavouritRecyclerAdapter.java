@@ -41,7 +41,6 @@ public class FavouritRecyclerAdapter  extends RecyclerView.Adapter<FavouritRecyc
 
         //instace from new Arrival product
         final FavouriteResponseItem model = list.get(position);
-     //   Log.e("iiiiiii",model.getDefaultImage());
         utils.loadImage(model.getDefaultImage(), holder.favourit_image);
         holder.item_name.setText(model.getNameEn());
         holder.item_price.setText(model.getPrice().getPrice()+" $");

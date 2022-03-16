@@ -25,7 +25,9 @@ import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.Recyclers.CartRecyclerAdapter;
 import com.example.elgaml.ecommerce.model.Cart.Cart;
 import com.example.elgaml.ecommerce.model.Cart.CartResponse;
+import com.example.elgaml.ecommerce.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,9 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
     private RecyclerView cart_recycler;
     private CartViewModel cartViewModel;
     SharedPreferences prefs;
+    private String mUSER_Data ="UserData";
+    private User user;
+    private String userData;
     private static final String MY_PREFS_NAME = "UserAuth";
     String USER_ID = "UserId";
     private List<Cart> mList, mSeperateList;
@@ -48,7 +53,6 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
     View view_cart;
     Button checkout;
     Toast toast;
-    String token="a4890fae6ccd7e7c50f514fcd17cb27e";
     ProgressBar progressBar;
     Observer<CartResponse> observer;
     private RelativeLayout relativeLayout;
@@ -90,6 +94,9 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         cartViewModel.init();
 
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        Gson gson=new Gson();
+        userData = prefs.getString(mUSER_Data, "");
+        user = gson.fromJson(userData, User.class);
        // token = prefs.getString(USER_ID, "");
 
         //hideAllView();
@@ -116,12 +123,12 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
                 }
             }
         };
-        cartViewModel.getCart(token).observe(getViewLifecycleOwner(), observer);
+        cartViewModel.getCart(user.getApiToken()).observe(getViewLifecycleOwner(), observer);
     }
 
     @Override
     public void onClickDelete(int postion) {
-        cartViewModel.deleteCart(mList.get(postion).getId(), token).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+        cartViewModel.deleteCart(mList.get(postion).getId(), user.getApiToken()).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
             @Override
             public void onChanged(CartResponse cartResponse) {
 
@@ -150,10 +157,10 @@ public class CartFragment extends Fragment implements CartRecyclerAdapter.CartRe
         } else if (but_id.equals("minus")) {
             quantity = 0;
         }
-        cartViewModel.updateCart(token, quantity, card_id).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+        cartViewModel.updateCart(user.getApiToken(), quantity, card_id).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
             @Override
             public void onChanged(CartResponse cartResponse) {
-                cartViewModel.getCart(token).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
+                cartViewModel.getCart(user.getApiToken()).observe(getViewLifecycleOwner(), new Observer<CartResponse>() {
                     @Override
                     public void onChanged(CartResponse cartResponse) {
                         if (cartResponse.getCarts().size() != 0) {

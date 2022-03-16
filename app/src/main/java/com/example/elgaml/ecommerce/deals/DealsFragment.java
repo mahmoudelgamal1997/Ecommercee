@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.elgaml.ecommerce.home.HomeViewModel;
@@ -43,6 +44,7 @@ public class DealsFragment extends Fragment {
     TextView hot_txt,seemore_hot_txt;
     ImageView next_hot_deals;
     DealsViewModel dealsViewModel;
+    ProgressBar progressBar;
     List<HotDeal> hotDealList = new ArrayList<>();
     public DealsFragment() {
         // Required empty public constructor
@@ -75,6 +77,7 @@ public class DealsFragment extends Fragment {
         hot_txt=(TextView)view.findViewById(R.id.hot_deals_today_txt);
         seemore_hot_txt=(TextView)view.findViewById(R.id.seemore_hot_deals);
         next_hot_deals=(ImageView)view.findViewById(R.id.next_sign_hot_deals);
+        progressBar=view.findViewById(R.id.deals_progress);
 
         hot_deals_recycler=(RecyclerView)view.findViewById(R.id.hot_deals_recycler);
         hot_deals_recycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
@@ -90,6 +93,7 @@ public class DealsFragment extends Fragment {
         dealsViewModel.init();
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String  token = prefs.getString(USER_ID, "");
+        progressBar.setVisibility(View.VISIBLE);
         dealsViewModel.getDeals().observe(getViewLifecycleOwner(), new Observer<DealResponse>() {
             @Override
             public void onChanged(DealResponse dealResponse) {
@@ -101,6 +105,7 @@ public class DealsFragment extends Fragment {
                 seemore_hot_txt.setVisibility(View.VISIBLE);
 
             }
+                progressBar.setVisibility(View.VISIBLE);
                 hotDealList = dealResponse.getHotDeals();
                 HotDealsRecyclerAdapter hotDealsRecyclerView = new HotDealsRecyclerAdapter(getContext(),hotDealList, token, getViewLifecycleOwner(), dealsViewModel);
                 hotDealsRecyclerView.setList(hotDealList);
@@ -112,8 +117,4 @@ public class DealsFragment extends Fragment {
                 BrandRecyclerAdapter brandRecyclerAdapter = new BrandRecyclerAdapter(getContext(), dealResponse.getTopBrand());
                 brand_recycler.setAdapter(brandRecyclerAdapter);
             }});
-
-
-
-
     }}

@@ -35,7 +35,6 @@ public class LoginRepository
             public void onResponse(Call<SignInModel> call,Response<SignInModel> response) {
                 if (response.isSuccessful()){
                     newsData.setValue(response.body().getUser());
-                    Log.e("Signintoast",response.body().getUser().getName());
                 }else{
                     newsData.setValue(null);
                 }}

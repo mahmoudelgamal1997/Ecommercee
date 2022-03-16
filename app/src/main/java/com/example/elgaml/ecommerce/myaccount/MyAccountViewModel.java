@@ -34,10 +34,7 @@ public class MyAccountViewModel extends ViewModel {
             @Override
             public void onSuccess(UserResponse user)
             {
-                Log.e("UserAccont",user.getUser().getName());
-                Log.e("UserAccont",user.getUser().getEmail());
-                Log.e("UserAccont",user.getUser().getImage());
-                mutableLiveData.setValue(user);
+               mutableLiveData.setValue(user);
             }
 
             @Override

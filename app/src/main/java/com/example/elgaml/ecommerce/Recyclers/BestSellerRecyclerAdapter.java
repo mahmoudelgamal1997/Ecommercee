@@ -59,7 +59,6 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
 
         //instace from new Arrival product
         final BestSeller model=list.get(position);
-        Log.e("isFav",model.getIsFav()+"");
         if (model.getIsFav()){
             holder.love.setImageResource(R.drawable.heart_loved);
         }else {
@@ -91,8 +90,6 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
             public void onClick(View v) {
                 holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                 if (isNetworkAvailable(context)){
-
-                    Log.e("Clicked","clicked");
                     homeViewModel.addFavourit(token,String.valueOf(model.getId())).observe(owner, new Observer<AddToFavourit>() {
                         @Override
                         public void onChanged(AddToFavourit addToFavourit) {
