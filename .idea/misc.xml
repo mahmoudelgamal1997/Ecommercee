@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/drawable/ic_market.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/activity_login.xml" value="0.10030395136778116" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/activity_single_product.xml" value="0.2" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/favourit_product.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/fragment_cart.xml" value="0.10106382978723404" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/fragment_deals.xml" value="0.16" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/fragment_favourit.xml" value="0.12364130434782608" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Ecommercee/app/src/main/res/layout/fragment_home.xml" value="0.11231884057971014" />

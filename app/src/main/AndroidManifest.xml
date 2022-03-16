@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".MyApplication"
+        android:name="katar.example.elgaml.ecommerce.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_market"
         android:label="@string/app_name"
@@ -16,22 +16,26 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".product.SingleProduct"
-            android:exported="false" />
-        <activity android:name=".auth.forgetpass.NewPassword" />
-        <activity android:name=".auth.forgetpass.ConfirmForgotPassword" />
-        <activity android:name=".auth.forgetpass.ForgetPassword" />
-        <activity android:name=".auth.signup.SignUpActivity" />
-        <activity android:name=".home.Home" />
-        <activity android:name=".splash.SplashScreen">
+            android:name="katar.example.elgaml.ecommerce.product.SingleProduct"
+            android:exported="true" />
+        <activity android:name="katar.example.elgaml.ecommerce.auth.forgetpass.NewPassword" />
+        <activity android:name="katar.example.elgaml.ecommerce.auth.forgetpass.ConfirmForgotPassword" />
+        <activity android:name="katar.example.elgaml.ecommerce.auth.forgetpass.ForgetPassword" />
+        <activity android:name="katar.example.elgaml.ecommerce.auth.signup.SignUpActivity" />
+        <activity android:name="katar.example.elgaml.ecommerce.home.Home" />
+        <activity android:name="katar.example.elgaml.ecommerce.splash.SplashScreen"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.login.LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="katar.example.elgaml.ecommerce.auth.login.LoginActivity" />
+        <activity android:name="katar.example.elgaml.ecommerce.MainActivity"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

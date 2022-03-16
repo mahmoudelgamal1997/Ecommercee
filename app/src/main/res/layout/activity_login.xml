@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.login.LoginActivity">
+    tools:context="katar.example.elgaml.ecommerce.auth.login.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,19 +21,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="90dp"
         />
+
     <EditText
         android:id="@+id/email_phone_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/toolbar"
-        android:hint="@string/email_phone"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:paddingLeft="20dp"
         android:background="@drawable/email_password_background"
-        />
+        android:hint="@string/email_phone"
+        android:paddingLeft="20dp" />
 
     <ImageView
         android:layout_width="25dp"
