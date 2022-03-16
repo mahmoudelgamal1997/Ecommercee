@@ -126,6 +126,7 @@ public class SignUpActivity extends AppCompatActivity  {
                         @Override
                         public void onChanged(User user) {
                             if (user!=null) {
+                                Log.e("SignUP", user.getId().toString());
                                 progressBar.setVisibility(View.VISIBLE);
                                 // Storing boolean
                                 Gson gson=new Gson();

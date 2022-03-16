@@ -86,8 +86,7 @@ public class LoginActivity extends AppCompatActivity  {
                                         editor.putString(USER_EMAIL,user.getEmail());
                                         editor.putString(USER_IMG,user.getImage());
                                         editor.apply();
-
-                                    loginViewModel.goToHome(getCurrentFocus());
+                                        loginViewModel.goToHome(getCurrentFocus());
                                         finish();
 
                                     } else {
