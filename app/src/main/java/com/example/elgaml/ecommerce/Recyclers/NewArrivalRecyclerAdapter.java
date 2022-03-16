@@ -51,7 +51,7 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
         NewArrival model = list.get(position);
         if (model.getIsFav()) {
             holder.love.setImageResource(R.drawable.heart_loved);
-        } else if (!model.getIsFav()){
+        } else {
             holder.love.setImageResource(R.drawable.heart_unlove);
         }
        // holder.love.setAnimation(makeAnimation());
@@ -101,15 +101,9 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
             item_category = (TextView) itemView.findViewById(R.id.item_name);
             item_price = (TextView) itemView.findViewById(R.id.item_price);
 
-
          //   love.setAnimation(utils.makeAnimation(itemView.getContext()));
         }
-
-
-
     }
-
-
 }
 
 

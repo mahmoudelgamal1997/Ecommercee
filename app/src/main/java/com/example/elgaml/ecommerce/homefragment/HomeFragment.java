@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
     private static final String MY_PREFS_NAME = "UserAuth";
     TextView hot_deals, seemore_hotdeals;
     ImageView next_img;
+    ProgressBar progressBar;
 
     NewArrivalRecyclerAdapter arrivalAdapter;
     BestSellerRecyclerAdapter bestSellerRecyclerAdapter;
@@ -86,6 +88,7 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         homeViewModel.init();
 
         seemore_hotdeals = (TextView) view.findViewById(R.id.seemore_hot_deals);
+        progressBar=view.findViewById(R.id.progress_home);
         prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         Gson gson=new Gson();
         userData = prefs.getString(mUSER_Data, "");
@@ -115,10 +118,11 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
 
         //  hotDealsRecyclerAdapter = new HotDealsRecyclerAdapter(getContext(), mTopCategories, token, getViewLifecycleOwner(), homeViewModel);
         //  recyclerView_hotdeals.setAdapter(categoryRecyclerAdapter);
-
+        progressBar.setVisibility(View.VISIBLE);
         homeViewModel.getHome(user.getApiToken()).observe(getViewLifecycleOwner(), new Observer<HomeTestResponse>() {
             @Override
             public void onChanged(HomeTestResponse homeResponse) {
+                progressBar.setVisibility(View.INVISIBLE);
                 onGetHome(homeResponse);
             }
         });
@@ -130,8 +134,10 @@ public class HomeFragment extends Fragment implements NewArrivalRecyclerAdapter.
         mTopCategories = homeResponse.getTopCategories();
         mHotDeals = homeResponse.getHotDeals();
            
-        arrivalAdapter.setList(mNewArrival);
-        arrivalAdapter.notifyDataSetChanged();
+         //  arrivalAdapter.setList(mNewArrival);
+         arrivalAdapter = new NewArrivalRecyclerAdapter(getContext(), homeResponse.getNewArrival(), HomeFragment.this);
+         recyclerView_new_arrival.setAdapter(arrivalAdapter);
+         //  arrivalAdapter.notifyDataSetChanged();
 
         bestSellerRecyclerAdapter.setList(mBestSeller);
         bestSellerRecyclerAdapter.notifyDataSetChanged();

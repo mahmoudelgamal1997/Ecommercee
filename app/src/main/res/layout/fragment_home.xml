@@ -57,6 +57,7 @@
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="80dp"
+                    android:visibility="invisible"
                     />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/newarrival_recycler"
