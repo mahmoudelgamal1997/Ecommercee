@@ -13,10 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".auth.forgetpass.NewPassword"></activity>
+        <activity
+            android:name=".product.SingleProduct"
+            android:exported="false" />
+        <activity android:name=".auth.forgetpass.NewPassword" />
         <activity android:name=".auth.forgetpass.ConfirmForgotPassword" />
         <activity android:name=".auth.forgetpass.ForgetPassword" />
         <activity android:name=".auth.signup.SignUpActivity" />

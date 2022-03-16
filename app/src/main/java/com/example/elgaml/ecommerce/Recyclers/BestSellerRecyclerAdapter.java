@@ -1,6 +1,7 @@
 package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.elgaml.ecommerce.home.HomeViewModel;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.FavouritModel.AddToFavourit;
 import com.example.elgaml.ecommerce.model.HomeModel.BestSeller;
+import com.example.elgaml.ecommerce.product.SingleProduct;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
 
 import java.util.List;
@@ -73,6 +75,15 @@ public class BestSellerRecyclerAdapter extends RecyclerView.Adapter<BestSellerRe
         }
 
          */
+
+        holder.product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SingleProduct.class);
+                intent.putExtra("ProductID",list.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
         holder.item_price.setText(model.getPrice().getPrice()+" $");
         holder.item_category.setText(String.valueOf(model.getNameEn()));
         holder.love.setOnClickListener(new View.OnClickListener() {

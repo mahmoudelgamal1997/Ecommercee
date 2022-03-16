@@ -1,6 +1,7 @@
 package com.example.elgaml.ecommerce.Recyclers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.elgaml.ecommerce.R;
 import com.example.elgaml.ecommerce.model.HomeModel.NewArrival;
+import com.example.elgaml.ecommerce.product.SingleProduct;
 import com.example.elgaml.ecommerce.utils.ProjectUtils;
 import java.util.List;
 
@@ -62,6 +64,15 @@ public class NewArrivalRecyclerAdapter extends RecyclerView.Adapter<NewArrivalRe
             public void onClick(View v) {
               //  holder.love.setAnimation(utils.makeAnimation(holder.itemView.getContext()));
                 listiner.onClickFav(position);
+            }
+        });
+
+        holder.product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SingleProduct.class);
+                intent.putExtra("ProductID",list.get(position).getId());
+                context.startActivity(intent);
             }
         });
     }

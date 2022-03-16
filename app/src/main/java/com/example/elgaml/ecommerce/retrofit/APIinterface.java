@@ -10,6 +10,7 @@ import com.example.elgaml.ecommerce.model.MyAccountModel.UserResponse;
 import com.example.elgaml.ecommerce.model.SignInModel;
 import com.example.elgaml.ecommerce.model.SignUpModel;
 import com.example.elgaml.ecommerce.model.HomeModel.HomeTestResponse;
+import com.example.elgaml.ecommerce.model.product.ProductResponse;
 
 import java.util.List;
 
@@ -82,6 +83,7 @@ public interface APIinterface {
     Single<CartResponse> getCarts(@Query("api_token") String api_token);
 
 
+
     @GET(GlobalKeys.profile)
     Single<UserResponse> getProfile(@Query("api_token")String api_token);
 
@@ -92,5 +94,9 @@ public interface APIinterface {
 
     @DELETE(GlobalKeys.deleteCart+"{cart_id}")
     Single<CartResponse> deleteCart(@Path("cart_id") int cart_id, @Query("api_token") String api_token );
+
+
+    @GET(GlobalKeys.product+"{productId}")
+    Single<ProductResponse> getProduct(@Path("productId") int productId);
 
 }
